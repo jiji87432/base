@@ -17,11 +17,11 @@ layui.use(['layer', 'form', 'admin', 'ax'], function () {
     var layer = layui.layer;
 
     // 让当前iframe弹层高度适应
-    admin.iframeAuto();
+    // admin.iframeAuto();
 
 
     //获取参数信息
-    var ajax = new $ax(Feng.ctxPath + "/app_member/detail/" + Feng.getUrlParam("app_memberId"));
+    var ajax = new $ax(Feng.ctxPath + "/app_member/detail/" + Feng.getUrlParam("memberId"));
     var result = ajax.start();
     form.val('app_memberForm', result);
 

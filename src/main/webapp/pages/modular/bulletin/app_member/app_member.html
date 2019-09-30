@@ -1,7 +1,7 @@
 @layout("/common/_container.html",{plugins:["ztree"],js:["/assets/modular/bulletin/app_member/app_member.js"]}){
 
 <div class="layui-body-header">
-    <span class="layui-body-header-title">用户信息管理</span>
+    <span class="layui-body-header-title">会员列表</span>
 </div>
 
 <div class="layui-fluid">
@@ -12,10 +12,10 @@
                     <div class="layui-form toolbar">
                         <div class="layui-form-item">
                             <div class="layui-inline">
-                                <input id="condition" class="layui-input" type="text" placeholder="名称"/>
+                                <input id="condition" class="layui-input" type="text" placeholder="用户名"/>
                             </div>
                             <div class="layui-inline">
-                                <input id="timeLimit" class="layui-input" type="text" placeholder="授权日期"/>
+                                <input id="timeLimit" class="layui-input" type="text" placeholder="注册时间"/>
                             </div>
                             <div class="layui-inline">
                                 <button id="btnSearch" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>搜索</button>
@@ -28,7 +28,7 @@
                             </div>
                         </div>
                     </div>
-                    <table class="layui-table" id="app_memberTable" lay-filter="App_memberTable"></table>
+                    <table class="layui-table" id="app_memberTable" lay-filter="app_memberTable"></table>
                 </div>
             </div>
         </div>

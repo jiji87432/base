@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
  * 用户个人中心模块控制器
  */
 @RestController
-@RequestMapping("/running/personal")
+@RequestMapping("/app/v1/personal")
 public class PersonalController extends BaseController {
 
     @Autowired

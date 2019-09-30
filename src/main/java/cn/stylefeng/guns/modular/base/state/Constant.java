@@ -10,4 +10,7 @@ public class Constant {
 
 	public static final String TOKEN="TOKEN";
 
+	//商户角色id
+	public static final String MERCHANT_ROLE_ID="10";
+
 }

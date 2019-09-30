@@ -230,6 +230,10 @@
             <!--<version>3.8</version>-->
         <!--</dependency>-->
         <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+        </dependency>
+        <dependency>
             <groupId>cn.afterturn</groupId>
             <artifactId>easypoi-base</artifactId>
             <version>3.0.3</version>

@@ -25,26 +25,45 @@ App_member.initColumn = function () {
     return [[
         // {type: 'checkbox'},
         {field: 'memberId', hide: true, sort: true, title: 'id'},
-        {field: 'name', sort: true, title: '用户微信昵称',width:120},
-        {field: 'head', sort: true, title: '头像',templet: "#img" ,width:80},
-        {field: 'registerTime', sort: true, title: '授权日期',width:180},
-        {field: 'questionCount', sort: true, title: '总提问数量',width:120},
-        {field: 'acceptAnswerCount', sort: true, title: '已采纳回答数量',width:160},
-        {field: 'answerCount', sort: true, title: '回答数量'},
-        {field: 'discussCount', sort: true, title: '评论数量'},
-        {field: 'articleCount', sort: true, title: '文章数量'},
-        {field: 'collectQuestionCount', sort: true, title: '收藏问题数量',width:150},
-        {field: 'attentionCount', sort: true, title: '关注数量'},
-        {field: 'fanCount', sort: true, title: '粉丝数量'},
-        {field: 'totalPrice', sort: true, title: '悬赏总额'},
-        {field: 'paidPrice', sort: true, title: '已发放悬赏金额',width:150},
-        {field: 'detectCount', sort: true, title: '申请的检测数量',width:150},
-        {field: 'status',sort: true, templet: '#statusTpl', title: '用户状态'},
-        // {field: 'statusValue', sort: true, title: '用户状态'},
-        // {align: 'center', toolbar: '#tableBar', title: '操作', minWidth: 200}
-    ]];
+        {field: 'memberId',  sort: true, rowspan:"2",title: '用户ID',width:120},
+        {field: 'account', rowspan:"2", title: '用户名',width:120},
+        {field: 'phone',  rowspan:"2",title: '用户手机',width:120},
+        {field: 'name', rowspan:"2", title: '用户真实姓名',width:120},
+        {field: 'promotion', rowspan:"2", title: '个人推荐码',width:120},
+        {field: 'inviteName', rowspan:"2", title: '用户推荐人',width:120},
+        {field: 'invite',  rowspan:"2",title: '用户推荐码',width:120},
+        {field: 'registerTime', sort: true,rowspan:"2", title: '注册时间',width:160},
+        {field: 'totalPrice', sort: true,rowspan:"2", title: '用户钱包余额',width:160},
+        {align: 'center', title: '用户常规佣金比例', colspan: 3},
+        {align: 'center', title: '用户加成佣金比例', colspan: 3},
+        {field: 'addTimeLimit', rowspan:"2",  title: '加成佣金比例启用起止时间',width:200},
+        {field: 'commission', rowspan:"2", title: '用户佣金统计',width:130},
+        {field: 'score', rowspan:"2", title: '信用分',width:100},
+        {field: 'status',fixed: 'right', rowspan:"2",templet: '#statusTpl', title: '用户状态'},
+        {align: 'center',fixed: 'right', toolbar: '#tableBar',rowspan:"2", title: '操作', minWidth: 200}
+    ],
+        [
+            {field: 'wechatRate', title: '微信', width: 120}
+            ,{field: 'alipayRate', title: '支付宝', width: 120}
+            ,{field: 'collectRate', title: '聚合码', width: 120}
+            ,{field: 'wechatRateAdd', title: '微信', width: 120}
+            ,{field: 'alipayRateAdd', title: '支付宝', width: 120}
+            ,{field: 'collectRateAdd', title: '聚合码', width: 120}
+        ]
+    ];
 };
+// 渲染表格
+    var tableResult = table.render({
+        elem: '#' + App_member.tableId,
+        url: Feng.ctxPath + '/app_member/list',
+        page: true,
+        height: "full-158",
+        cellMinWidth: 100,
+        limit:100,
+        limits: [100,200,300,400,500],
+        cols: App_member.initColumn()
 
+    });
 
     /**
      * 点击查询按钮
@@ -57,22 +76,6 @@ App_member.initColumn = function () {
 
         table.reload(App_member.tableId, {where: queryData});
     };
-   /**
-      * 弹出添加用户信息
-      */
-     App_member.openAddApp_member = function () {
-         admin.putTempData('formOk', false);
-         top.layui.admin.open({
-             type: 2,
-             title: '添加用户信息',
-             area:["800px","420px"],//宽高
-             content: Feng.ctxPath +'/app_member/app_member_add',
-             end: function () {
-                 admin.getTempData('formOk') && table.reload(App_member.tableId);
-             }
-         });
-     };
-
 
 
 /**
@@ -147,22 +150,14 @@ App_member.openApp_memberDetail = function () {
         top.layui.admin.open({
             type: 2,
             title: '修改用户信息',
-            area:["800px","420px"],
-            content: Feng.ctxPath + '/app_member/app_member_edit?app_memberId=' + data.app_memberId,
+            area:["800px","650px"],
+            content: Feng.ctxPath + '/app_member/app_member_edit?memberId=' + data.memberId,
             end: function () {
                 admin.getTempData('formOk') && table.reload(App_member.tableId);
             }
         });
     };
- // 渲染表格
-    var tableResult = table.render({
-        elem: '#' + App_member.tableId,
-        url: Feng.ctxPath + '/app_member/list',
-        page: true,
-        height: "full-158",
-        cellMinWidth: 100,
-        cols: App_member.initColumn()
-    });
+
  // 搜索按钮点击事件
     $('#btnSearch').click(function () {
         App_member.search();
@@ -191,7 +186,7 @@ App_member.openApp_memberDetail = function () {
                 Feng.success("已启用!");
             }, function (data) {
                 Feng.error("失败!");
-                table.reload(Contact.tableId);
+                table.reload(App_member.tableId);
             });
             ajax.set("memberId", id);
             ajax.start();
@@ -200,7 +195,7 @@ App_member.openApp_memberDetail = function () {
                 Feng.success("已禁用!");
             }, function (data) {
                 Feng.error("失败!" + data.responseJSON.message + "!");
-                table.reload(Contact.tableId);
+                table.reload(App_member.tableId);
             });
             ajax.set("memberId", id);
             ajax.start();

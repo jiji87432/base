@@ -26,4 +26,12 @@ public class RandomUtil {
        return   code(null);
     }
 
+
+    /**
+     * 生成随机账号
+     */
+    public static String account(){
+        return UUID.randomUUID().toString().replace("-","").substring(0,8);
+    }
+
 }

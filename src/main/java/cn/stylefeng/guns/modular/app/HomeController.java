@@ -54,7 +54,7 @@ import org.codehaus.xfire.util.Base64;
 
 
 @Controller
-@RequestMapping(value = "/running")
+@RequestMapping(value = "/app/v1")
 public class HomeController {
 
 

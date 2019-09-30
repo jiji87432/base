@@ -1,15 +1,94 @@
 @layout("/common/_container.html",{bg:"bg-white",js:["/assets/modular/bulletin/app_member/app_member_edit.js"]}){
 <form id="app_memberForm" lay-filter="app_memberForm" class="layui-form model-form">
-    <input name="app_memberId" type="hidden"/>
+    <input name="memberId" type="hidden"/>
     <div class="layui-form-item">
-        <label class="layui-form-label">名称<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <input name="name" placeholder="请输入名称(模板)" type="text" class="layui-input" lay-verify="required" required/>
+        <label class="layui-form-label-lyy">用户钱包余额<span style="color: red;">*</span></label>
+        <div class="layui-input-block-lyy">
+            <input name="totalPrice" placeholder="请输入用户钱包余额" type="number" class="layui-input" lay-verify="required" required/>
         </div>
     </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label-lyy">用户常规佣金比例-微信<span style="color: red;">*</span></label>
+        <div class="layui-input-block-lyy">
+            <input name="wechatRate" placeholder="微信" type="number" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label-lyy">用户常规佣金比例-支付宝<span style="color: red;">*</span></label>
+        <div class="layui-input-block-lyy">
+            <input name="alipayRate" placeholder="支付宝)" type="number" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label-lyy">用户常规佣金比例-聚合码<span style="color: red;">*</span></label>
+        <div class="layui-input-block-lyy">
+            <input name="collectRate" placeholder="聚合码" type="number" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label-lyy">用户加成佣金比例-微信<span style="color: red;">*</span></label>
+        <div class="layui-input-block-lyy">
+            <input name="wechatRateAdd" placeholder="微信" type="number" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label-lyy">用户加成佣金比例-支付宝<span style="color: red;">*</span></label>
+        <div class="layui-input-block-lyy">
+            <input name="alipayRateAdd" placeholder="支付宝" type="number" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label-lyy">用户加成佣金比例-聚合码<span style="color: red;">*</span></label>
+        <div class="layui-input-block-lyy">
+            <input name="collectRateAdd" placeholder="聚合码" type="number" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label-lyy">用户加成佣金比例-开始时间<span style="color: red;">*</span></label>
+        <div class="layui-input-block-lyy">
+            <input name="startTime"  type="text" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label-lyy">用户加成佣金比例-结束时间<span style="color: red;">*</span></label>
+        <div class="layui-input-block-lyy">
+            <input name="endTime" type="text" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label-lyy">信用分<span style="color: red;">*</span></label>
+        <div class="layui-input-block-lyy">
+            <select name="score" id="score" lay-verify="required">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+    </div>
+
     <div class="layui-form-item text-right">
         <button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog">取消</button>
         <button class="layui-btn" lay-filter="btnSubmit" lay-submit>保存</button>
     </div>
 </form>
+<style type="text/css">
+    .layui-form-label-lyy{
+        float: left;
+        display: block;
+        padding: 9px 15px;
+        /*width: 80px;*/
+        font-weight: 400;
+        line-height: 20px;
+        text-align: right;
+    }
+    .layui-input-block-lyy{
+        margin-left: 220px;
+        min-height: 36px;
+    }
+
+</style>
+
 @}

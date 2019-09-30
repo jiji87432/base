@@ -1,5 +1,6 @@
 package cn.stylefeng.guns.core.interceptor;
 
+import cn.stylefeng.guns.modular.app.service.AppMemberService;
 import cn.stylefeng.guns.modular.base.state.Constant;
 import cn.stylefeng.guns.modular.base.state.PromotionFactory;
 import cn.stylefeng.guns.modular.base.util.RedisUtil;
@@ -27,8 +28,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
     @Autowired
     RedisUtil redisUtil;
 
-//    @Autowired
-//    MemberService memberService;
+    @Autowired
+    AppMemberService memberService;
 
     /**
      * 预处理回调方法，实现处理器的预处理（如登录检查）。
@@ -39,7 +40,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
                              Object handler) throws Exception {
-        /*try {
+        try {
             //验证用户是否登陆
             Object obj = request.getHeader("token");
             if (obj == null || !(obj instanceof String)) {
@@ -90,8 +91,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
         } catch (Exception e) {
             e.printStackTrace();
             return false;
-        }*/
-        return true;
+        }
     }
 
     /**

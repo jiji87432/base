@@ -23,7 +23,7 @@ Article.initColumn = function () {
         // {type: 'checkbox'},
         {field: 'articleId', hide: true, sort: true, title: 'id'},
         {field: 'articleType', hide: true,sort: true, title: '文章类型'},
-        {field: 'articleTypeValue', sort: true, title: '实验室文章'},
+        {field: 'articleTypeValue', sort: true, title: '文章'},
         {field: 'createTime', sort: true, title: '创建时间'},
         {field: 'updateTime', sort: true, title: '更新时间'},
         {align: 'center', toolbar: '#tableBar', title: '操作', minWidth: 200}
