@@ -1,6 +1,9 @@
 package cn.stylefeng.guns.core.template;
 
 import cn.stylefeng.guns.core.util.ToolUtilNew;
+import cn.stylefeng.guns.modular.meta_data.model.TableDto;
+
+import java.util.List;
 
 
 /**
@@ -16,6 +19,11 @@ public class ContextConfig {
     private String bizEnName;   //业务英文名称
     private String bizEnBigName;//业务英文名称(大写)
     private String moduleName = "system";  //模块名称
+    private String topMenuName ;  //上级菜单名称
+    private String sort;//当前菜单排序号
+    private String tableSchema;//数据源
+    private String bizTableName;//映射表名称
+    private List<TableDto> tableFieldList; //表字段信息
 
     private Boolean controllerSwitch = true;    //是否生成控制器代码开关
     private Boolean indexPageSwitch = true;     //主页
@@ -29,6 +37,78 @@ public class ContextConfig {
     private Boolean serviceSwitch = true;       //service
     private Boolean wrapperSwitch = true;       //wrapper
     private Boolean mapSwitch = true;       //mapSwitch
+
+    private Boolean menuSwitch=true;  //生成sql 菜单脚本
+
+    private Boolean entitySwitch=true;  //生成entity
+
+    private Boolean mapperXmlSwitch=true ; //生成mapper文件
+
+
+    public List<TableDto> getTableFieldList() {
+        return tableFieldList;
+    }
+
+    public void setTableFieldList(List<TableDto> tableFieldList) {
+        this.tableFieldList = tableFieldList;
+    }
+
+    public String getTableSchema() {
+        return tableSchema;
+    }
+
+    public void setTableSchema(String tableSchema) {
+        this.tableSchema = tableSchema;
+    }
+
+    public String getBizTableName() {
+        return bizTableName;
+    }
+
+    public void setBizTableName(String bizTableName) {
+        this.bizTableName = bizTableName;
+    }
+
+    public String getSort() {
+        return sort;
+    }
+
+    public void setSort(String sort) {
+        this.sort = sort;
+    }
+
+    public String getTopMenuName() {
+        return topMenuName;
+    }
+
+    public void setTopMenuName(String topMenuName) {
+        this.topMenuName = topMenuName;
+    }
+
+
+    public Boolean getMapperXmlSwitch() {
+        return mapperXmlSwitch;
+    }
+
+    public void setMapperXmlSwitch(Boolean mapperXmlSwitch) {
+        this.mapperXmlSwitch = mapperXmlSwitch;
+    }
+
+    public Boolean getEntitySwitch() {
+        return entitySwitch;
+    }
+
+    public void setEntitySwitch(Boolean entitySwitch) {
+        this.entitySwitch = entitySwitch;
+    }
+
+    public Boolean getMenuSwitch() {
+        return menuSwitch;
+    }
+
+    public void setMenuSwitch(Boolean menuSwitch) {
+        this.menuSwitch = menuSwitch;
+    }
 
     public Boolean getAddJsSwitch() {
         return addJsSwitch;
@@ -180,4 +260,6 @@ public class ContextConfig {
     public void setMapSwitch(Boolean mapSwitch) {
         this.mapSwitch = mapSwitch;
     }
+
+
 }

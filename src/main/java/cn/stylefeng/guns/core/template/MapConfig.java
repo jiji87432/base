@@ -25,8 +25,8 @@ public class MapConfig {
         ArrayList<String> imports = new ArrayList<>();
         imports.add("cn.stylefeng.guns.core.common.constant.dictmap.base.AbstractDictMap");
         this.mapImports = imports;
-        this.mapPathTemplate = "\\src\\main\\java\\com\\stylefeng\\guns\\modular\\" + contextConfig.getModuleName() + "\\constant\\{}Map.java";
-        this.packageName = "com.stylefeng.guns.modular." + contextConfig.getModuleName() + ".constant";
+        this.mapPathTemplate = "\\src\\main\\java\\cn\\stylefeng\\guns\\modular\\" + contextConfig.getModuleName() + "\\constant\\{}Map.java";
+        this.packageName = "cn.stylefeng.guns.modular." + contextConfig.getModuleName() + ".constant";
     }
 
 }

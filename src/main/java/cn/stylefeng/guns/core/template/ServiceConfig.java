@@ -27,9 +27,9 @@ public class ServiceConfig {
         imports.add("java.util.Map");
 //        imports.add("com.stylefeng.guns.modular." + contextConfig.getModuleName() + ".service." + contextConfig.getBizEnBigName() + "Service");
         this.serviceImplImports = imports;
-        this.servicePathTemplate = "\\src\\main\\java\\com\\stylefeng\\guns\\modular\\" + contextConfig.getModuleName() + "\\service\\{}Service.java";
-        this.serviceImplPathTemplate = "\\src\\main\\java\\com\\stylefeng\\guns\\modular\\" + contextConfig.getModuleName() + "\\service\\impl\\{}ServiceImpl.java";
-        this.packageName = "com.stylefeng.guns.modular." + contextConfig.getModuleName() + ".service";
+        this.servicePathTemplate = "\\src\\main\\java\\cn\\stylefeng\\guns\\modular\\" + contextConfig.getModuleName() + "\\service\\{}Service.java";
+        this.serviceImplPathTemplate = "\\src\\main\\java\\cn\\stylefeng\\guns\\modular\\" + contextConfig.getModuleName() + "\\service\\impl\\{}ServiceImpl.java";
+        this.packageName = "cn.stylefeng.guns.modular." + contextConfig.getModuleName() + ".service";
     }
 
 

@@ -48,6 +48,9 @@ public abstract class GunsTemplateEngine extends AbstractTemplateEngine {
         template.binding("service", super.getServiceConfig());
         template.binding("wrapper", super.getWrapperConfig());
         template.binding("constant", super.getMapConfig());
+        template.binding("menuSql", super.getMenuSqlConfig());
+        template.binding("entity", super.getEntityConfig());
+        template.binding("page", super.getPageConfig());
     }
 
     public void generateFile(String template,String filePath){
@@ -75,35 +78,35 @@ public abstract class GunsTemplateEngine extends AbstractTemplateEngine {
         super.initConfig();
 
         //生成模板
-        if(super.contextConfig.getControllerSwitch()){
+        if (super.contextConfig.getControllerSwitch()) {
             generateController();
         }
-        if(super.contextConfig.getIndexPageSwitch()){
+        if (super.contextConfig.getIndexPageSwitch()) {
             generatePageHtml();
         }
-        if(super.contextConfig.getAddPageSwitch()){
+        if (super.contextConfig.getAddPageSwitch()) {
             generatePageAddHtml();
         }
-        if(super.contextConfig.getEditPageSwitch()){
+        if (super.contextConfig.getEditPageSwitch()) {
             generatePageEditHtml();
         }
-        if(super.contextConfig.getJsSwitch()){
+        if (super.contextConfig.getJsSwitch()) {
             generatePageJs();
         }
 
-        if(super.contextConfig.getAddJsSwitch()){
+        if (super.contextConfig.getAddJsSwitch()) {
             generatePageAddJs();
         }
-        if(super.contextConfig.getEditJsSwitch()){
+        if (super.contextConfig.getEditJsSwitch()) {
             generatePageEditJs();
         }
-        if(super.contextConfig.getInfoJsSwitch()){
+        if (super.contextConfig.getInfoJsSwitch()) {
             generatePageInfoJs();
         }
-        if(super.contextConfig.getMapperSwitch()){
+        if (super.contextConfig.getMapperSwitch()) {
             generateMapper();
         }
-        if(super.contextConfig.getServiceSwitch()){
+        if (super.contextConfig.getServiceSwitch()) {
             generateService();
         }
         if (super.contextConfig.getWrapperSwitch()) {
@@ -111,6 +114,17 @@ public abstract class GunsTemplateEngine extends AbstractTemplateEngine {
         }
         if (super.contextConfig.getMapSwitch()) {
             generateMap();
+        }
+        //生成菜单脚本
+        if (super.contextConfig.getMenuSwitch()) {
+            generateMenuSql();
+        }
+        if (super.contextConfig.getEntitySwitch()) {
+            generateEntity();
+        }
+        if (super.contextConfig.getMapperXmlSwitch())
+        {
+            generateMapperXml();
         }
 
     }
@@ -138,6 +152,12 @@ public abstract class GunsTemplateEngine extends AbstractTemplateEngine {
     protected abstract void generateWrapper();
 
     protected abstract void generateMap();
+    //生成菜单脚本
+    protected abstract void generateMenuSql();
 
+    //生成实体类脚本
+    protected abstract void generateEntity();
+    //生成mapper.xml文件
+    protected abstract void generateMapperXml();
 
 }

@@ -1,5 +1,6 @@
 package cn.stylefeng.guns.modular.bulletin.controller;
 
+import cn.stylefeng.guns.modular.base.state.PromotionFactory;
 import cn.stylefeng.guns.modular.base.util.Result;
 import cn.stylefeng.guns.modular.bulletin.model.JsonResult;
 import cn.stylefeng.guns.modular.bulletin.model.UploadFileDto;
@@ -17,7 +18,7 @@ import java.util.Calendar;
 import java.util.UUID;
 
 @RestController
-@RequestMapping(value = {"/upload","running/upload"})
+@RequestMapping(value = {"/upload","/app/v1/upload"})
 public class UploadFileController {
 
     /**
@@ -25,7 +26,7 @@ public class UploadFileController {
      */
     public final String rootPath =MetaDataFactory.me().getValueByCode("UPLOAD_PATH");
 
-    public final String allowSuffix = ".bmp.jpg.jpeg.png.gif.pdf.doc.zip.rar.gz";
+    public final String allowSuffix = ".bmp.jpg.jpeg.png.gif.pdf.doc.zip.rar.gz.mp4.wav.avi";
 
     /**
      * 上传文件
@@ -125,12 +126,12 @@ public class UploadFileController {
         int i = 1;
         //若文件存在重命名
         String newFilename = filename;
-        while (descFile.exists()) {
-            newFilename = UUID.randomUUID().toString().substring(3,20)+suffix;
-            String parentPath = descFile.getParent();
-            descFile = new File(parentPath + File.separator + newFilename);
-            i++;
-        }
+//        while (descFile.exists()) {
+        newFilename = UUID.randomUUID().toString().substring(3,20)+suffix;
+        String parentPath = descFile.getParent();
+        descFile = new File(parentPath + File.separator + newFilename);
+        i++;
+//        }
         //判断目标文件所在的目录是否存在
         if (!descFile.getParentFile().exists()) {
             //如果目标文件所在的目录不存在，则创建父目录
@@ -145,7 +146,7 @@ public class UploadFileController {
             e.printStackTrace();
         }
         //完整的url
-        String fileUrl = "/uploads/" + dateDirs + "/" + newFilename;
+        String fileUrl = PromotionFactory.me().getSysConfigValueByCode("URL")+ "/uploads/" + dateDirs + "/" + newFilename;
 
         //4.返回URL
         UploadFileDto uploadFileDto = new UploadFileDto();

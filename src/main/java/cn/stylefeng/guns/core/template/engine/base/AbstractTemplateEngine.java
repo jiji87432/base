@@ -17,6 +17,9 @@ public class AbstractTemplateEngine {
     protected ServiceConfig serviceConfig;                //Service配置
     protected WrapperConfig wrapperConfig;                //Wrapper配置
     protected MapConfig mapConfig;                          //Map配置
+    protected MenuSqlConfig menuSqlConfig;                 //菜单sql配置
+    protected EntityConfig entityConfig;                 //entity配置
+
 
     public void initConfig() {
         if (this.contextConfig == null) {
@@ -37,10 +40,17 @@ public class AbstractTemplateEngine {
         if (this.wrapperConfig == null) {
             this.wrapperConfig = new WrapperConfig();
         }
-         if (this.mapConfig == null) {
+        if (this.mapConfig == null) {
             this.mapConfig = new MapConfig();
         }
-
+        if(this.menuSqlConfig==null)
+        {
+            this.menuSqlConfig=new MenuSqlConfig();
+        }
+        if(this.entityConfig==null)
+        {
+            this.entityConfig=new EntityConfig();
+        }
         this.controllerConfig.setContextConfig(this.contextConfig);
         this.controllerConfig.init();
 
@@ -59,6 +69,11 @@ public class AbstractTemplateEngine {
         this.mapConfig.setContextConfig(this.contextConfig);
         this.mapConfig.init();
 
+        this.menuSqlConfig.setContextConfig(this.contextConfig);
+        this.menuSqlConfig.init();
+
+        this.entityConfig.setContextConfig(this.contextConfig);
+        this.entityConfig.init();
     }
 
 

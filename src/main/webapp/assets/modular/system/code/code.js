@@ -6,10 +6,54 @@ layui.use(['layer', 'form', 'admin', 'ax'], function () {
     var $ax = layui.ax;
     var form = layui.form;
     var admin = layui.admin;
-    var layer = layui.layer;
 
-    // 让当前iframe弹层高度适应
-    admin.iframeAuto();
+    $.ajax({
+        type: "POST",
+        url: "/code/getTypeList",
+        datatype: "json",
+        success: function (data) {
+            $.each(data, function (index, item) {
+                $('#OpSelect').append(new Option(item.value, item.code));// 下拉菜单里添加元素
+            });
+            layui.form.render('select');
+        }, error: function () {
+            Feng.error("查询等级失败");
+        }
+    });
+
+    $.ajax({
+        type: "POST",
+        url: "/code/showDateBase",
+        datatype: "json",
+        success: function (data) {
+            $.each(data, function (index, item) {
+                $('#tableSchema').append(new Option(item.value, item.code));// 下拉菜单里添加元素
+            });
+            layui.form.render('select');
+        }, error: function () {
+            Feng.error("查询等级失败");
+        }
+    });
+    form.on('select(tableSchema)', function (data) {
+        $.ajax({
+            type: "POST",
+            url: "/code/getTableList",
+            datatype: "json",
+            data: {
+                tableSchema: $("#tableSchema").val()
+            },
+            success: function (data) {
+                $('#bizTableName').empty();
+                $.each(data, function (index, item) {
+                    $('#bizTableName').append(new Option(item.value, item.code));// 下拉菜单里添加元素
+                });
+                layui.form.render('select');
+            }, error: function () {
+                Feng.error("查询失败");
+            }
+        });
+    })
+
 
     // 表单提交事件
     form.on('submit(btnSubmit)', function (data) {
@@ -20,7 +64,7 @@ layui.use(['layer', 'form', 'admin', 'ax'], function () {
             admin.putTempData('formOk', true);
 
             //关掉对话框
-            admin.closeThisDialog();
+            // admin.closeThisDialog();
         }, function (data) {
             Feng.error("添加失败！" + data.responseJSON.message)
         });
@@ -28,19 +72,5 @@ layui.use(['layer', 'form', 'admin', 'ax'], function () {
         ajax.start();
     });
 
-    // var Code = {
-    //
-    // };
-    //
-    // /**
-    //  * 提交代码生成
-    //  */
-    // Code.generate = function () {
-    //     var baseAjax = Feng.baseAjax("/code/generate","生成代码");
-    //     baseAjax.set("bizChName");
-    //     baseAjax.set("bizEnName");
-    //     baseAjax.set("path");
-    //     baseAjax.set("moduleName");
-    //     baseAjax.start();
-    // };
+
 });

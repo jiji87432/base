@@ -1,6 +1,9 @@
 package cn.stylefeng.guns.core.template;
 
+import cn.stylefeng.guns.modular.meta_data.model.TableDto;
 import lombok.Data;
+
+import java.util.List;
 
 /**
  * 页面 模板生成的配置
@@ -20,11 +23,13 @@ public class PageConfig {
     private String pageInfoJsPathTemplate;
     private String pageAddJsPathTemplate;
     private String pageEditJsPathTemplate;
+    private List<TableDto> tableDtoList;
 
     public void init() {
-        pagePathTemplate = "\\src\\main\\webapp\\WEB-INF\\view\\" + contextConfig.getModuleName() + "\\{}\\{}.html";
-        pageAddPathTemplate = "\\src\\main\\webapp\\WEB-INF\\view\\" + contextConfig.getModuleName() + "\\{}\\{}_add.html";
-        pageEditPathTemplate = "\\src\\main\\webapp\\WEB-INF\\view\\" + contextConfig.getModuleName() + "\\{}\\{}_edit.html";
+        this.tableDtoList=contextConfig.getTableFieldList();
+        pagePathTemplate = "\\src\\main\\webapp\\pages\\modular\\" + contextConfig.getModuleName() + "\\{}\\{}.html";
+        pageAddPathTemplate = "\\src\\main\\webapp\\pages\\modular\\" + contextConfig.getModuleName() + "\\{}\\{}_add.html";
+        pageEditPathTemplate = "\\src\\main\\webapp\\pages\\modular\\" + contextConfig.getModuleName() + "\\{}\\{}_edit.html";
         pageJsPathTemplate = "\\src\\main\\webapp\\assets\\modular\\" + contextConfig.getModuleName() + "\\{}\\{}.js";
         pageInfoJsPathTemplate = "\\src\\main\\webapp\\assets\\modular\\" + contextConfig.getModuleName() + "\\{}\\{}_info.js";
         pageAddJsPathTemplate = "\\src\\main\\webapp\\assets\\modular\\" + contextConfig.getModuleName() + "\\{}\\{}_add.js";

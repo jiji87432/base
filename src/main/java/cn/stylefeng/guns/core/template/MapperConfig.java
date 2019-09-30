@@ -1,5 +1,7 @@
 package cn.stylefeng.guns.core.template;
 
+import cn.stylefeng.guns.modular.meta_data.model.TableDto;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +17,9 @@ public class MapperConfig {
     private String xmlPathTemplate;
 
     private String packageName;
+    private List<TableDto> tableDtoList;//所引入的包
+
+    private String entityPackage;
 
 
 
@@ -25,10 +30,28 @@ public class MapperConfig {
         imports.add("com.baomidou.mybatisplus.extension.plugins.pagination.Page");
         imports.add("org.apache.ibatis.annotations.Param");
         imports.add("java.util.Map");
+        this.tableDtoList=contextConfig.getTableFieldList();
         this.mapperImports = imports;
-        this.mapperPathTemplate = "\\src\\main\\java\\com\\stylefeng\\guns\\modular\\" + contextConfig.getModuleName() + "\\mapper\\{}Mapper.java";
-        this.xmlPathTemplate = "\\src\\main\\java\\com\\stylefeng\\guns\\modular\\" + contextConfig.getModuleName() + "\\mapper\\mapping\\{}Mapper.xml";
-        this.packageName = "com.stylefeng.guns.modular." + contextConfig.getModuleName() + ".mapper";
+        this.entityPackage="cn.stylefeng.guns.modular." + contextConfig.getModuleName() + ".entity";
+        this.mapperPathTemplate = "\\src\\main\\java\\cn\\stylefeng\\guns\\modular\\" + contextConfig.getModuleName() + "\\mapper\\{}Mapper.java";
+        this.xmlPathTemplate = "\\src\\main\\java\\cn\\stylefeng\\guns\\modular\\" + contextConfig.getModuleName() + "\\mapper\\mapping\\{}Mapper.xml";
+        this.packageName = "cn.stylefeng.guns.modular." + contextConfig.getModuleName() + ".mapper";
+    }
+
+    public List<TableDto> getTableDtoList() {
+        return tableDtoList;
+    }
+
+    public void setTableDtoList(List<TableDto> tableDtoList) {
+        this.tableDtoList = tableDtoList;
+    }
+
+    public String getEntityPackage() {
+        return entityPackage;
+    }
+
+    public void setEntityPackage(String entityPackage) {
+        this.entityPackage = entityPackage;
     }
 
     public String getPackageName() {

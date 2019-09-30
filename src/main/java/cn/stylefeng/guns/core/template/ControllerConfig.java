@@ -41,8 +41,8 @@ public class ControllerConfig {
         imports.add("cn.stylefeng.roses.core.reqres.response.ResponseData");
 
         this.imports = imports;
-        this.packageName = "com.stylefeng.guns.modular." + contextConfig.getModuleName() + ".controller";
-        this.controllerPathTemplate = "\\src\\main\\java\\com\\stylefeng\\guns\\modular\\" + contextConfig.getModuleName() + "\\controller\\{}Controller.java";
+        this.packageName = "cn.stylefeng.guns.modular." + contextConfig.getModuleName() + ".controller";
+        this.controllerPathTemplate = "\\src\\main\\java\\cn\\stylefeng\\guns\\modular\\" + contextConfig.getModuleName() + "\\controller\\{}Controller.java";
     }
 
     public String getPackageName() {

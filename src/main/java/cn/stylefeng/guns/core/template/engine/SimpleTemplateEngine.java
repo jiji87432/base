@@ -29,10 +29,10 @@ public class SimpleTemplateEngine extends GunsTemplateEngine {
 
     @Override
     protected void generatePageInfoJs() {
-        String path = ToolUtilNew.format(super.getContextConfig().getProjectPath() + getPageConfig().getPageInfoJsPathTemplate(),
-                super.getContextConfig().getBizEnName(),super.getContextConfig().getBizEnName());
-        generateFile("lyyTemplate/page_info.js.btl", path);
-        System.out.println("生成页面详情js成功!");
+//        String path = ToolUtilNew.format(super.getContextConfig().getProjectPath() + getPageConfig().getPageInfoJsPathTemplate(),
+//                super.getContextConfig().getBizEnName(),super.getContextConfig().getBizEnName());
+//        generateFile("lyyTemplate/page_info.js.btl", path);
+//        System.out.println("生成页面详情js成功!");
     }
 
     @Override
@@ -117,5 +117,28 @@ public class SimpleTemplateEngine extends GunsTemplateEngine {
         System.out.println("生成Map成功!");
     }
 
+    @Override
+    protected void generateMenuSql(){
+        String menuSqlPath = ToolUtilNew.format(super.getContextConfig().getProjectPath() + super.getMenuSqlConfig().getMenuSqlPathTemplate(),
+                ToolUtilNew.firstLetterToUpper(super.getContextConfig().getBizEnName()));
+        generateFile("lyyTemplate/menuSql.sql.btl", menuSqlPath);
+        System.out.println("生成MenuSql成功!");
+    }
+
+    @Override
+    protected void generateEntity() {
+        String entityPath = ToolUtilNew.format(super.getContextConfig().getProjectPath() + super.getEntityConfig().getEntityPathTemplate(),
+                ToolUtilNew.firstLetterToUpper(super.getContextConfig().getBizEnName()));
+        generateFile("lyyTemplate/Entity.java.btl", entityPath);
+        System.out.println("生成Entity成功!");
+    }
+
+    @Override
+    protected void generateMapperXml() {
+//        String mapperXmlPath = ToolUtilNew.format(super.getContextConfig().getProjectPath() + super.getMapperXmlConfig().getMapperXmlPathTemplate(),
+//                ToolUtilNew.firstLetterToUpper(super.getContextConfig().getBizEnName()));
+//        generateFile("lyyTemplate/MapperXml.sql.btl", mapperXmlPath);
+//        System.out.println("生成MapperXml成功!");
+    }
 
 }

@@ -8,6 +8,7 @@ import cn.stylefeng.guns.modular.bulletin.model.AppMemberDto;
 import cn.stylefeng.guns.modular.bulletin.wrapper.AppMemberWrapper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import cn.stylefeng.roses.core.reqres.response.ResponseData;
+import io.swagger.annotations.Api;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;

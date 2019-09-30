@@ -29,8 +29,8 @@ public class WrapperConfig {
         imports.add("java.util.List");
         imports.add("java.util.Map");
         this.wrapperImports = imports;
-        this.wrapperPathTemplate = "\\src\\main\\java\\com\\stylefeng\\guns\\modular\\" + contextConfig.getModuleName() + "\\wrapper\\{}Wrapper.java";
-        this.packageName = "com.stylefeng.guns.modular." + contextConfig.getModuleName() + ".wrapper";
+        this.wrapperPathTemplate = "\\src\\main\\java\\cn\\stylefeng\\guns\\modular\\" + contextConfig.getModuleName() + "\\wrapper\\{}Wrapper.java";
+        this.packageName = "cn.stylefeng.guns.modular." + contextConfig.getModuleName() + ".wrapper";
     }
 
 
