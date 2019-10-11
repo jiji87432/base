@@ -8,6 +8,7 @@ import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import cn.hutool.core.util.IdUtil;
 import cn.stylefeng.guns.modular.app.service.AppMemberService;
 import cn.stylefeng.guns.modular.base.state.Constant;
 import cn.stylefeng.guns.modular.base.state.PromotionFactory;
@@ -174,7 +175,7 @@ public class HomeController {
 
         QueryWrapper<AppMember> queryWrapper = new QueryWrapper(appMember);
         AppMember newMember = appMemberService.getOne(queryWrapper);
-        String token = UUID.randomUUID().toString().replaceAll("-", "");
+        String token = IdUtil.simpleUUID();
 
         if (newMember != null) {
             //更新最近一次登录
@@ -192,7 +193,7 @@ public class HomeController {
                 newMember.setName(member.getName());
             }
             appMemberService.updateById(newMember);
-            redisUtil.set(token, newMember.getMemberId() + "", Constant.SAVEUSERTIME);//30分钟
+            redisUtil.set(token, newMember, Constant.SAVEUSERTIME);//30分钟
         } else { //为空的话注册用户
             appMember.setHead(member.getHead());
             appMember.setName(member.getName());
@@ -230,7 +231,7 @@ public class HomeController {
                 if (register == null) {
                     Result.fail(500, "注册用户失败");
                 }
-                redisUtil.set(token, register.getMemberId() + "", Constant.SAVEUSERTIME);
+                redisUtil.set(token, register, Constant.SAVEUSERTIME);
             }
         }
 
@@ -250,78 +251,7 @@ public class HomeController {
         return Result.success("success getId!!!", map);
     }
 
-    //上传照片
-    @RequestMapping(value = "/addPhoto", method = RequestMethod.POST)
-    public @ResponseBody
-    String uploadImg(
-            @RequestParam("file") MultipartFile file
-            , HttpSession session,
-            HttpServletRequest request) {
-        String str = "{\"code\": -1,\"msg\": \"上传失败\",\"data\":null}";
-        //  String league_id=request.getSession().getAttribute("leagueID").toString();
-        //System.out.println("id："+league_id);
-        String url = request.getRequestURI();
-        System.out.println("URL:" + url);
-        try {
-            if (null != file) {
-                //获得当前项目所在路径
-                String pathRoot = request.getSession().getServletContext().getRealPath("");
-                System.out.println("当前项目所在路径：" + pathRoot);
-                //生成uuid作为文件名称
-                String uuid = UUID.randomUUID().toString().replaceAll("-", "");
-                System.out.println("文件名称：" + uuid);
-                //获得文件类型（判断如果不是图片文件类型，则禁止上传）
-                String contentType = file.getContentType();
-                System.out.println("文件类型：" + contentType);
 
-                //获得文件后缀名称
-                String imageName = contentType.substring(contentType.indexOf("/") + 1);
-                System.out.println("文件后缀名称：" + imageName);
-//		                if(ImageUtils.isImage(imageName)) {
-                String filePath = "static/upload/images/";
-                //根据日期来创建对应的文件夹
-                String datePath = new SimpleDateFormat("yyyy/MM/dd/").format(new Date());
-                System.out.println("日期：" + datePath);
-                //根据id分类来创建对应的文件夹
-                //  String leagueIdPath=league_id+"/";
-                //日期
-                String path = filePath + datePath;
-                //联赛id
-                //String path=filePath+leagueIdPath;
-                //如果不存在，则创建新文件夹
-                File f = new File(pathRoot + path);
-                if (!f.exists()) {
-                    f.mkdirs();
-                }
-                //新生成的文件名称
-                String fileName = uuid + "." + imageName;
-                System.out.println("新生成的文件名称：" + fileName);
-                session.setAttribute("fileName", fileName);
-
-                //图片保存的完整路径
-                String pathName = path + fileName;
-                System.out.println(pathName);
-
-                //获取所属联赛ID
-                // int leagueID=Integer.parseInt(league_id);
-                //图片的静态资源路径
-                String staticPath = "/upload/images/" + datePath + "/" + fileName;
-                System.out.println("静态资源路径：" + staticPath);
-
-                //复制操作
-                //将图片从源位置复制到目标位置
-                file.transferTo(new File(pathRoot + pathName));
-
-                str = "{\"code\": 0,\"msg\": \"\",\"data\": {\"src\":\"" + "/" + pathName + "\"}}";
-
-            }
-            // }
-        } catch (IOException e) {
-            e.printStackTrace();
-            return str;
-        }
-        return str;
-    }
 
 
     private JSONObject getUserWXLoginInfo(String wxCode) {

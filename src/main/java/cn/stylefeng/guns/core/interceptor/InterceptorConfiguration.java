@@ -34,6 +34,7 @@ public class InterceptorConfiguration implements WebMvcConfigurer {
 
         //TODO:开发用
         ir.excludePathPatterns("/app/v1/getToken");//获取token
+        ir.excludePathPatterns("/app/v1/personal/**");//url回调
     }
 
     @Bean

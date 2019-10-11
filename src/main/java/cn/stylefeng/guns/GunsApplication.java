@@ -16,6 +16,8 @@ public class GunsApplication {
     private final static Logger logger = LoggerFactory.getLogger(GunsApplication.class);
 
     public static void main(String[] args) {
+        // 设置环境变量，解决Es的netty与Netty服务本身不兼容问题
+        System.setProperty("es.set.netty.runtime.available.processors","false");
         SpringApplication.run(GunsApplication.class, args);
         logger.info(GunsApplication.class.getSimpleName() + " is success!");
     }

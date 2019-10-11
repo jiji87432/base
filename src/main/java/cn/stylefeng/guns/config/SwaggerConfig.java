@@ -34,8 +34,8 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("检测小程序 Doc")
-                .description("检测小程序 Api文档")
+                .title(" Doc")
+                .description(" Api文档")
                 .termsOfServiceUrl("#")
                 .contact(new Contact("stylefeng", "#", ""))
                 .version("1.0")
