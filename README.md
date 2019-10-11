@@ -21,3 +21,14 @@
  
  4.微信支付   
  
+ 5.网关管理
+ 
+ 6.后台常见功能
+ 
+ ## 后台页面
+ 
+ ### 主页面
+ ![效果图](/doc/detail/images/home.png)
+ 
+ ![效果图](/doc/detail/images/home2.png)
+     
