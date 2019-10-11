@@ -3,7 +3,8 @@ package ${service.packageName};
 <% for(import in service.serviceImplImports!){ %>
 import ${import};
 <% } %>
-
+import cn.stylefeng.guns.modular.promotion.entity.${context.bizEnBigName};
+import cn.stylefeng.guns.modular.promotion.mapper.${context.bizEnBigName}Mapper;
 /**
  * ${context.bizChName}Service
  *

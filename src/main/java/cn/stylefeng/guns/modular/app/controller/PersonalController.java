@@ -1,6 +1,7 @@
 package cn.stylefeng.guns.modular.app.controller;
 
 
+import cn.stylefeng.guns.core.common.annotion.ApiGateway;
 import cn.stylefeng.guns.modular.app.service.PersonalService;
 import cn.stylefeng.guns.modular.base.util.Result;
 import cn.stylefeng.roses.core.base.controller.BaseController;
@@ -57,6 +58,7 @@ public class PersonalController extends BaseController {
      */
     @ApiOperation(value = "notifyUrl - 测试")
     @PostMapping("/notifyUrl")
+    @ApiGateway(code = "A10001")
     public String notifyUrl(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String success = "success";
         System.err.println("回调监听：" + response.toString());
@@ -82,7 +84,23 @@ public class PersonalController extends BaseController {
             }
         }
         System.out.println("map:"+retMap.toString());
-        return success;
+//        return success;
+        return null;
+    }
+
+    /**
+     * notifyUrl
+     *
+     * @return
+     */
+    @ApiOperation(value = "notifyUrl - 测试")
+    @PostMapping("/notifyUrlBean")
+    @ApiGateway(code = "A10002")
+    public String notifyUrlBean(String str) {
+        String success = "success";
+        System.err.println("回调监听：" + str.toString());
+//        return success;
+        return null;
     }
 
 

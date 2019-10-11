@@ -6,6 +6,10 @@ import cn.stylefeng.guns.modular.bulletin.mapper.*;
 import cn.stylefeng.guns.modular.meta_data.constant.ConfigMap;
 import cn.stylefeng.guns.modular.meta_data.entity.Config;
 import cn.stylefeng.guns.modular.meta_data.mapper.ConfigMapper;
+import cn.stylefeng.guns.modular.promotion.entity.GatewayDefine;
+import cn.stylefeng.guns.modular.promotion.entity.GatewayRecord;
+import cn.stylefeng.guns.modular.promotion.mapper.GatewayDefineMapper;
+import cn.stylefeng.guns.modular.promotion.mapper.GatewayRecordMapper;
 import cn.stylefeng.roses.core.util.SpringContextHolder;
 import cn.stylefeng.roses.core.util.ToolUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -13,6 +17,7 @@ import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
 
 import javax.tools.Tool;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -27,14 +32,25 @@ public class PromotionFactory implements IPromotionFactory {
 
 
 
-
     private AppMemberMapper appMemberMapper = SpringContextHolder.getBean(AppMemberMapper.class);
 
 
 
     private ConfigMapper configMapper=SpringContextHolder.getBean(ConfigMapper.class);
 
+    private GatewayRecordMapper gatewayRecordMapper=SpringContextHolder.getBean(GatewayRecordMapper.class);
 
+    private GatewayDefineMapper gatewayDefineMapper=SpringContextHolder.getBean(GatewayDefineMapper.class);
+
+
+
+    /**
+     * 网关记录
+     */
+    public void gatewayRecord(GatewayRecord gatewayRecord){
+        gatewayRecord.setCreateUser(-1L);
+        gatewayRecordMapper.insert(gatewayRecord);
+    }
 
 
 
@@ -83,5 +99,55 @@ public class PromotionFactory implements IPromotionFactory {
 
     }
 
+    /**
+     *  是否开放日志
+     * @param apiGatewayCode 网关编码
+     * @return
+     */
+    public boolean isOpenLog(String apiGatewayCode) {
+        if(!existGateWay(apiGatewayCode))//网关是否存在
+        {
+            return false;
+        }
+        GatewayDefine define=new GatewayDefine();
+        define.setDel("N").setCode(apiGatewayCode).setStatus(ProConst.GatewayStatusEnum.OPEN_LOG.getCode());
+        if(gatewayDefineMapper.selectOne(new QueryWrapper<>(define))==null){
+            return false;
+        }
+        return true;
+    }
 
+
+
+    /**
+     * 是否打开网关
+     * @param apiGatewayCode
+     * @return
+     */
+    public boolean isEnableGateway(String apiGatewayCode) {
+        if(!existGateWay(apiGatewayCode))
+        {
+            return false;
+        }
+        GatewayDefine define=new GatewayDefine();
+        define.setDel("N").setCode(apiGatewayCode);
+        if(gatewayDefineMapper.selectOne(new QueryWrapper<>(define).in("status",ProConst.GatewayStatusEnum.OPEN.getCode(),ProConst.GatewayStatusEnum.OPEN_LOG.getCode()))==null){
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 网关是否存在
+     * @param apiGatewayCode
+     * @return
+     */
+    public boolean existGateWay(String apiGatewayCode) {
+        GatewayDefine define=new GatewayDefine();
+        define.setDel("N").setCode(apiGatewayCode);
+        if(gatewayDefineMapper.selectList(new QueryWrapper<>(define)).size()>0) {
+            return true;
+        }
+        return false;
+    }
 }

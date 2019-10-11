@@ -32,4 +32,29 @@ public class ProConst {
     }
 
 
+    /**
+     * 网关状态
+     */
+    public enum GatewayStatusEnum{
+        OPEN("OPEN","开放"),
+        OPEN_LOG("OPEN_LOG","开放且日志"),
+        CLOSE("CLOSE","关闭");
+        private String code;
+        private String value;
+
+        GatewayStatusEnum(String code,String value){
+            this.code = code;
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        public String getCode() {
+            return code;
+        }
+    }
+
+
 }

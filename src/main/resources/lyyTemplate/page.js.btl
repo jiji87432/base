@@ -20,9 +20,16 @@ var ${context.bizEnBigName} = {
  */
 ${context.bizEnBigName}.initColumn = function () {
     return [[
-        {type: 'checkbox'},
-        {field: '${context.bizEnName}Id', hide: true, sort: true, title: 'id'},
-        {field: 'createTime', sort: true, title: '创建时间'},
+        // {type: 'checkbox'},
+         <% for(field in page.tableDtoList!){ %>
+         <% if(field.columnName!='CREATE_USER' && field.columnName!='UPDATE_TIME' && field.columnName!='UPDATE_USER' && field.columnName!='del' && field.columnName!='remark' && field.columnName!='status'){  %>
+         <%  if(field.columnKey=='PRI'){ %>
+         {field: '${field.propertyName}', hide: true, sort: true, title: 'id'},
+         <%  }else{ %>
+         {field: '${field.propertyName}', sort: true, title: '${field.columnComment}'},
+         <% } %>
+         <% } %>
+         <% } %>
         {align: 'center', toolbar: '#tableBar', title: '操作', minWidth: 200}
     ]];
 };

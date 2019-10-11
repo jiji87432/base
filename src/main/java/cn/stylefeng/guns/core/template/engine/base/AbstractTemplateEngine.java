@@ -40,7 +40,7 @@ public class AbstractTemplateEngine {
         if (this.wrapperConfig == null) {
             this.wrapperConfig = new WrapperConfig();
         }
-        if (this.mapConfig == null) {
+         if (this.mapConfig == null) {
             this.mapConfig = new MapConfig();
         }
         if(this.menuSqlConfig==null)

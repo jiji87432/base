@@ -3,6 +3,10 @@ package ${controller.packageName};
 <% for(import in controller.imports!){ %>
 import ${import};
 <% } %>
+import cn.stylefeng.guns.modular.promotion.service.${context.bizEnBigName}Service;
+import cn.stylefeng.guns.modular.promotion.wrapper.${context.bizEnBigName}Wrapper;
+import cn.stylefeng.guns.modular.promotion.entity.${context.bizEnBigName};
+import cn.stylefeng.guns.modular.promotion.constant.${context.bizEnBigName}Map;
 
 /**
  * ${context.bizChName}控制器
@@ -53,9 +57,10 @@ public class ${context.bizEnBigName}Controller extends BaseController {
     @ResponseBody
     public Object detail(@PathVariable("${context.bizEnName}Id") Long ${context.bizEnName}Id) {
         ${context.bizEnBigName} entity = ${context.bizEnName}Service.getById(${context.bizEnName}Id);
-        ${context.bizEnBigName}Dto conditionDto = new ${context.bizEnBigName}Dto();
-        BeanUtil.copyProperties(entity, conditionDto);
-        return conditionDto;
+      //  ${context.bizEnBigName}Dto conditionDto = new ${context.bizEnBigName}Dto();
+      //  BeanUtil.copyProperties(entity, conditionDto);
+      //  return conditionDto;
+        return entity;
     }
 
 
@@ -114,4 +119,14 @@ public class ${context.bizEnBigName}Controller extends BaseController {
         return SUCCESS_TIP;
     }
 
+    /**
+     * 查询内容详情
+     */
+    @RequestMapping("/content/{${context.bizEnName}Id}")
+    @ResponseBody
+    public Object content(@PathVariable("${context.bizEnName}Id") Long id) {
+        ${context.bizEnBigName} ${context.bizEnName} = ${context.bizEnName}Service.getById(id);
+        Map<String, Object> stringObjectMap = BeanUtil.beanToMap(${context.bizEnName});
+        return super.warpObject(new ${context.bizEnBigName}Wrapper(stringObjectMap));
+    }
 }

@@ -2,8 +2,9 @@ package ${mapper.packageName};
 <% for(import in mapper.mapperImports!){ %>
 import ${import};
 <% } %>
+import cn.stylefeng.guns.modular.promotion.entity.${context.bizEnBigName};
 /**
- * ${context.bizChName}Mapper
+ * ${context.bizChName}Mapper 接口
  *
  * @author yaying.liu
  * @Date ${tool.currentTime()}
