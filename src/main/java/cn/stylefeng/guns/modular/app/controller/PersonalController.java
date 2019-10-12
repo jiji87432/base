@@ -3,10 +3,12 @@ package cn.stylefeng.guns.modular.app.controller;
 
 import cn.stylefeng.guns.core.common.annotion.ApiGateway;
 import cn.stylefeng.guns.modular.app.service.PersonalService;
+import cn.stylefeng.guns.modular.app.vo.TestVo;
 import cn.stylefeng.guns.modular.base.util.Result;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,6 +24,8 @@ import java.util.Set;
 
 /**
  * 用户个人中心模块控制器
+ *
+ * 注：当前token未拦截
  */
 @RestController
 @RequestMapping("/app/v1/personal")
@@ -101,6 +106,11 @@ public class PersonalController extends BaseController {
         System.err.println("回调监听：" + str.toString());
 //        return success;
         return null;
+    }
+
+    @PostMapping("/hello")
+    public Result hello(@Valid TestVo testVo){
+        return Result.success("成功");
     }
 
 

@@ -6,7 +6,7 @@ public class Result implements Serializable {
 
 	private static final long serialVersionUID = 531702546012353243L;
 	
-	private int code = 0;
+	private int code = 200;
 	
 	private Object data;
 	

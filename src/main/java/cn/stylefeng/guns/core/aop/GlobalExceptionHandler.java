@@ -5,6 +5,7 @@ import cn.stylefeng.guns.core.common.exception.InvalidKaptchaException;
 import cn.stylefeng.guns.core.log.LogManager;
 import cn.stylefeng.guns.core.log.factory.LogTaskFactory;
 import cn.stylefeng.guns.core.shiro.ShiroKit;
+import cn.stylefeng.guns.modular.base.util.Result;
 import cn.stylefeng.roses.core.reqres.response.ErrorResponseData;
 import cn.stylefeng.roses.kernel.model.exception.ServiceException;
 import org.apache.shiro.authc.AuthenticationException;
@@ -15,12 +16,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindException;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.lang.reflect.UndeclaredThrowableException;
+import java.util.List;
 
 import static cn.stylefeng.roses.core.util.HttpContext.getIp;
 import static cn.stylefeng.roses.core.util.HttpContext.getRequest;
@@ -34,6 +38,28 @@ import static cn.stylefeng.roses.core.util.HttpContext.getRequest;
 public class GlobalExceptionHandler {
 
     private Logger log = LoggerFactory.getLogger(this.getClass());
+
+
+    /**
+     * 拦截参数异常
+     */
+    @ExceptionHandler(BindException.class)
+    @ResponseBody
+    public Result apiException(BindException e){
+        if(e.hasErrors())
+        {
+            List<FieldError> list = e.getFieldErrors();
+            StringBuffer sb = new StringBuffer("参数：");
+            for(FieldError error : list){
+
+                sb.append(error.getField()).append(":").append(error.getDefaultMessage()).append(";");
+            }
+
+            return Result.fail(HttpStatus.BAD_REQUEST.value(),sb.toString());
+        }
+        return Result.fail(HttpStatus.INTERNAL_SERVER_ERROR.value(),e.getMessage());
+    }
+
 
     /**
      * 拦截业务异常
