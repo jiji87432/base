@@ -2,16 +2,13 @@
 # 基于guns基础构建快速开发平台
 
  ## 技术介绍
- 1.Spring Boot 2.1
-  
- 2.MyBatis-Plus 
- 
- 3.beetl引擎 
- 
- 4.layui
- 
- 5.Redis
-  
+ |技术|说明|
+ |:----:|:----:|
+ |Spring Boot 2.1|后台核心框架|
+ |MyBatis-Plus|Mybatis加强版| 
+ |beetl引擎|模板引擎| 
+ |layui|后台UI框架|
+ |Redis|NoSQL|
  ## 拓展功能
  1.定时任务功能
  
