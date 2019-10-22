@@ -8,8 +8,10 @@ import cn.stylefeng.guns.modular.meta_data.entity.Config;
 import cn.stylefeng.guns.modular.meta_data.mapper.ConfigMapper;
 import cn.stylefeng.guns.modular.promotion.entity.GatewayDefine;
 import cn.stylefeng.guns.modular.promotion.entity.GatewayRecord;
+import cn.stylefeng.guns.modular.promotion.entity.Wallet;
 import cn.stylefeng.guns.modular.promotion.mapper.GatewayDefineMapper;
 import cn.stylefeng.guns.modular.promotion.mapper.GatewayRecordMapper;
+import cn.stylefeng.guns.modular.promotion.mapper.WalletMapper;
 import cn.stylefeng.roses.core.util.SpringContextHolder;
 import cn.stylefeng.roses.core.util.ToolUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -43,6 +45,25 @@ public class PromotionFactory implements IPromotionFactory {
     private GatewayDefineMapper gatewayDefineMapper=SpringContextHolder.getBean(GatewayDefineMapper.class);
 
 
+    private WalletMapper walletMapper = SpringContextHolder.getBean(WalletMapper.class);
+
+
+
+    /**
+     * 获取钱包信息
+     *
+     * @param memberId
+     * @return
+     */
+    public Wallet getWallet(Long memberId) throws Exception {
+        Wallet walletQ = new Wallet();
+        walletQ.setMemberId(memberId).setDel("N");
+        Wallet walletR = walletMapper.selectOne(new QueryWrapper<>(walletQ));
+        if (walletR == null) {
+            throw new Exception("错误！钱包为空");
+        }
+        return walletR;
+    }
 
     /**
      * 网关记录

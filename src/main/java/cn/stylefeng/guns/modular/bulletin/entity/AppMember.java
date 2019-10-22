@@ -7,12 +7,13 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.ToString;
+import lombok.experimental.Accessors;
 
 import java.util.Date;
 
 @TableName("app_member")
 @Data
-@ToString
+@Accessors(chain = true)
 public class AppMember extends BaseEntity {
 
     @TableId(value = "member_id", type = IdType.AUTO)

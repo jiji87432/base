@@ -5,6 +5,79 @@ package cn.stylefeng.guns.modular.base.state;
  */
 public class ProConst {
 
+    /**
+     * 提现类型
+     */
+    public enum WithdrawStatusEnum{
+        CHECK("CHECK","审核中")
+        ,PASS("PASS","审核通过")
+        ,REJECT("REJECT","拒绝")
+        ;
+        private String code;
+        private String value;
+
+        WithdrawStatusEnum(String code,String value){
+            this.code = code;
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        public String getCode() {
+            return code;
+        }
+    }
+
+    /**
+     * 流水类型
+     */
+
+    public enum CashFlowTypeEnum{
+        REG("REG","注册奖励")
+        ,TASK("TASK","任务")
+        ;
+        private String code;
+        private String value;
+
+        CashFlowTypeEnum(String code,String value){
+            this.code = code;
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        public String getCode() {
+            return code;
+        }
+    }
+
+
+    /**
+     * 资金流向
+     */
+    public enum CashFlowOpEnum{
+        FLOW_IN(1L,"流入"),
+        FLOW_OUT(0L,"流出");
+        private Long code;
+        private String value;
+
+        CashFlowOpEnum(Long code,String value){
+            this.code = code;
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        public Long getCode() {
+            return code;
+        }
+    }
 
     /**
      * 支付

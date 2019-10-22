@@ -86,7 +86,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
                 response.getWriter().print(map);
                 return false;
             }
-            redisUtil.set(Constant.TOKEN + token, member, Long.parseLong(PromotionFactory.me().getSysConfigValueByCode("TOKEN_EXPIRE")));
+            redisUtil.set(Constant.TOKEN + token, member, Long.parseLong(PromotionFactory.me().getSysConfigValueByCode(Constant.TOKEN_EXPIRE)));
             return true;
         } catch (Exception e) {
             e.printStackTrace();
