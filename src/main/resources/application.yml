@@ -44,12 +44,12 @@ spring:
     allow-bean-definition-overriding: true
     ## Elasticsearch配置文件（必须）
     ## 该配置和Elasticsearch本地文件config下的elasticsearch.yml中的配置信息有关
-  data:
-    elasticsearch:
-      cluster-name: elasticsearch
-      cluster-nodes: 127.0.0.1:9300
-      repositories:
-        enabled: true
+#  data:
+#    elasticsearch:
+#      cluster-name: elasticsearch
+#      cluster-nodes: 127.0.0.1:9300
+#      repositories:
+#        enabled: true
 mybatis-plus:
   typeAliasesPackage: cn.stylefeng.guns.modular.system.model
 #  configuration:
