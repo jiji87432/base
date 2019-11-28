@@ -24,5 +24,6 @@
     select
     <include refid="Base_Column_List"/>
     from news where del='N'
+    order by CREATE_TIME desc
   </select>
 </mapper>

@@ -11,10 +11,10 @@
     </parent>
 
     <groupId>cn.stylefeng</groupId>
-    <artifactId>guns</artifactId>
+    <artifactId>base</artifactId>
     <version>1.0.0</version>
 
-    <name>guns-admin</name>
+    <name>base</name>
     <description>guns 的spring boot版本</description>
 
     <packaging>jar</packaging>
@@ -24,7 +24,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <!--<java.version>1.7</java.version>-->
         <shiro.version>1.4.0</shiro.version>
         <kaptcha.version>2.3.2</kaptcha.version>
         <ehcache3.version>3.6.3</ehcache3.version>
@@ -76,6 +75,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
         </dependency>
 
         <!--shiro依赖和缓存-->
@@ -162,7 +166,7 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>4.1.13</version>
+            <version>4.6.8</version>
         </dependency>
 
         <dependency>

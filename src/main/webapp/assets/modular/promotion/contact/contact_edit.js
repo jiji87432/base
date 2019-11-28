@@ -45,11 +45,11 @@ layui.use(['layer', 'form', 'admin', 'ax','laydate'], function () {
         var a=data.field;
         var start=a.startTime;
         var end =a.endTime;
-        if(parseInt(start.substring(0,2))>parseInt(end.substring(0,2)))
+        if(start!=null&&end!=null&&parseInt(start.substring(0,2))>parseInt(end.substring(0,2)))
         {
             Feng.error("上班时间不能大于或等于下班时间");
         }
-        else if(parseInt(start.substring(0,2))==parseInt(end.substring(0,2))&&parseInt(start.substring(3,5))>=parseInt(end.substring(3,5)))
+        else if(start!=null&&end!=null&&parseInt(start.substring(0,2))==parseInt(end.substring(0,2))&&parseInt(start.substring(3,5))>=parseInt(end.substring(3,5)))
         {
             Feng.error("上班时间不能大于或等于下班时间");
         }

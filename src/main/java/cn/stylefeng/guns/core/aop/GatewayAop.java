@@ -35,6 +35,7 @@ import org.springframework.stereotype.Component;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -42,7 +43,7 @@ import java.util.Map;
  */
 @Aspect
 @Component
-@Order(250)
+@Order(10)
 public class GatewayAop {
 
     private Logger log = LoggerFactory.getLogger(this.getClass());
@@ -109,16 +110,22 @@ public class GatewayAop {
         }
 
 
-        //获取参数名称和值
-        Map<String, Object> nameAndArgs = this.getFieldsName(this.getClass(), clazzName, methodName, params);
-
-        GatewayRecord gatewayRecord = new GatewayRecord();
-        gatewayRecord.setInterfaceCode(apiGatewayCode)
-                .setRequestData(JSONUtil.parseObj(nameAndArgs).toString());
         /**
          * 是否开放日志记录
          */
         if(isOpenLog(apiGatewayCode)){
+            StringBuilder stringBuilder=new StringBuilder();
+            //获取参数名称和值
+            Map<String, Object> nameAndArgs = this.getFieldsName(this.getClass(), clazzName, methodName, params);
+            Iterator<Map.Entry<String, Object>> entries = nameAndArgs.entrySet().iterator();
+            while (entries.hasNext())
+            {
+                Map.Entry<String, Object> entry = entries.next();
+                stringBuilder.append("【"+entry.getKey()+":"+entry.getValue()+"】");
+            }
+            GatewayRecord gatewayRecord = new GatewayRecord();
+            gatewayRecord.setInterfaceCode(apiGatewayCode)
+                    .setRequestData(stringBuilder.toString());
             PromotionFactory.me().gatewayRecord(gatewayRecord);
         }
 

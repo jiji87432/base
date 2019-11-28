@@ -105,8 +105,11 @@ public class ContactController extends BaseController {
     public ResponseData edit(ContactDto dto) {
         Contact contact=new Contact();
         BeanUtil.copyProperties(dto,contact);
-        contact.setStart(DateTimeUtil.strToDate(dto.getStartTime(),"HH:mm:ss"));
-        contact.setEnd(DateTimeUtil.strToDate(dto.getEndTime(),"HH:mm:ss"));
+//        if(dto.getStartTime()!=null&&dto.getEndTime()!=null)
+//        {
+//            contact.setStart(DateTimeUtil.strToDate(dto.getStartTime(),"HH:mm:ss"));
+//            contact.setEnd(DateTimeUtil.strToDate(dto.getEndTime(),"HH:mm:ss"));
+//        }
         contactService.updateById(contact);
         return SUCCESS_TIP;
     }
