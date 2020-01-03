@@ -11,7 +11,7 @@ import lombok.experimental.Accessors;
 /**
  * 银行表
  */
-@TableName("bank")
+@TableName("com_bank")
 @Data
 @Accessors(chain =true)
 public class Bank extends BaseEntity {

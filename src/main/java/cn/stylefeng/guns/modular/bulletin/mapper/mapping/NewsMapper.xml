@@ -23,7 +23,7 @@
   <select id="selectByCondition" resultType="map">
     select
     <include refid="Base_Column_List"/>
-    from news where del='N'
+    from com_news where del='N'
     order by CREATE_TIME desc
   </select>
 </mapper>

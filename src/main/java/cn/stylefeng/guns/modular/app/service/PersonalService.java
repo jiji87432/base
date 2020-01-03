@@ -1,27 +1,14 @@
 package cn.stylefeng.guns.modular.app.service;
 
-import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.img.Img;
-import cn.stylefeng.guns.modular.base.state.ProConst;
-import cn.stylefeng.guns.modular.base.state.PromotionFactory;
 import cn.stylefeng.guns.modular.base.util.*;
 import cn.stylefeng.guns.modular.bulletin.entity.*;
-import cn.stylefeng.guns.modular.bulletin.model.*;
 import cn.stylefeng.guns.modular.bulletin.service.ArticleService;
 import cn.stylefeng.guns.modular.bulletin.service.ContactService;
-import cn.stylefeng.guns.modular.meta_data.constant.factory.MetaDataFactory;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.apache.commons.lang3.StringUtils;
-import org.aspectj.lang.annotation.SuppressAjWarnings;
-import org.beetl.ext.simulate.BaseSimulate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
-
-import java.io.PipedOutputStream;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Service
@@ -30,8 +17,6 @@ public class PersonalService {
     @Autowired
     RedisUtil redisUtil;
 
-    @Autowired
-    AppMemberService appMemberService;
 
     @Autowired
     ArticleService articleService;

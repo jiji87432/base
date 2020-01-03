@@ -30,7 +30,7 @@
     <select id="selectByCondition" resultType="map">
        select
         <include refid="Base_Column_List"/>
-       from declares tb where del='N'
+       from app_declares tb where del='N'
         <if test="condition!=null and condition!=''">
           and name like concat('%',#{condition},'%')
         </if>

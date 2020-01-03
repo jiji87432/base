@@ -1,5 +1,6 @@
 package cn.stylefeng.guns.modular.bulletin.wrapper;
 
+import cn.stylefeng.guns.modular.base.state.ProConst;
 import cn.stylefeng.guns.modular.base.util.ImgToList;
 import cn.stylefeng.roses.core.base.warpper.BaseControllerWrapper;
 import cn.stylefeng.roses.kernel.model.page.PageResult;
@@ -34,6 +35,17 @@ public class CarouselWrapper extends BaseControllerWrapper{
 
     @Override
     protected void wrapTheMap(Map<String, Object> map) {
+
+
+        String type=(String)map.get("type");
+        if (type != null) {
+            for (ProConst.CarouselType e : ProConst.CarouselType.values()) {
+                if(e.getCode().equals(type))
+                {
+                    map.put("typeValue",e.getValue());
+                }
+            }
+        }
 
         //图片
         String img = (String) map.get("img");

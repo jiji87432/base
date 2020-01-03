@@ -10,6 +10,8 @@
      <result column="return_price" property="returnPrice"/>
      <result column="ticket_price" property="ticketPrice"/>
      <result column="status" property="status"/>
+     <result column="version" property="version"/>
+     <result column="type" property="type"/>
      <result column="del" property="del"/>
      <result column="remark" property="remark"/>
      <result column="CREATE_TIME" property="createTime"/>
@@ -24,6 +26,8 @@
          total_price as totalPrice,
          return_price as returnPrice,
          ticket_price as ticketPrice,
+         version as version,
+         type as type,
          status as status,
          del as del,
          remark as remark,
@@ -36,11 +40,21 @@
     <select id="selectByCondition" resultType="map">
        select
         <include refid="Base_Column_List"/>
-       from wallet tb where del='N'
+       from fin_wallet tb where del='N'
         <if test="condition!=null and condition!=''">
-          and name like concat('%',#{condition},'%')
+          and member_id =(select member_id from app_member m where m.phone=#{condition} )
         </if>
         order by tb.create_time desc
     </select>
+
+    <update id="updateWallet">
+        update fin_wallet f set f.total_price=f.total_price+#{directPrice},f.version=#{version}+1 where f.walletId=#{walletId} and f.version=#{version}
+    </update>
+
+    <select id="getSummary" resultType="java.math.BigDecimal">
+        select IFNULL(sum(total_price),0) from fin_wallet where del='N' and type=#{code}
+    </select>
+
+
 
 </mapper>

@@ -2,7 +2,7 @@ package ${mapper.packageName};
 <% for(import in mapper.mapperImports!){ %>
 import ${import};
 <% } %>
-import cn.stylefeng.guns.modular.promotion.entity.${context.bizEnBigName};
+import cn.stylefeng.guns.modular.${context.tableNamePrefix}.entity.${context.bizEnBigName};
 /**
  * ${context.bizChName}Mapper 接口
  *

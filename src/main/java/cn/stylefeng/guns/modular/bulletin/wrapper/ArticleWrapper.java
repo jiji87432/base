@@ -31,6 +31,15 @@ public class ArticleWrapper extends BaseControllerWrapper{
 
     @Override
     protected void wrapTheMap(Map<String, Object> map) {
-        
+        String status = (String)map.get("articleType");
+        if (status != null) {
+            for (ProConst.ArticleTypeEnum e : ProConst.ArticleTypeEnum.values()) {
+                if(e.getCode().equals(status))
+                {
+                    map.put("articleTypeValue",e.getValue());
+
+                }
+            }
+        }
     }
 }

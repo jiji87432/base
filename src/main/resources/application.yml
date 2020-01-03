@@ -1,5 +1,5 @@
 server:
-  port: 8034
+  port: 8882
   max-http-header-size: 10240
 
 guns:
@@ -42,26 +42,27 @@ spring:
       max-file-size: 100MB
   main:
     allow-bean-definition-overriding: true
-    ## Elasticsearch配置文件（必须）
-    ## 该配置和Elasticsearch本地文件config下的elasticsearch.yml中的配置信息有关
-#  data:
-#    elasticsearch:
-#      cluster-name: elasticsearch
-#      cluster-nodes: 127.0.0.1:9300
-#      repositories:
-#        enabled: true
 mybatis-plus:
   typeAliasesPackage: cn.stylefeng.guns.modular.system.model
 #  configuration:
 #    log-impl:
 log:
   path: guns-logs
-wx:
-  pay:
-    appId: #微信公众号或者小程序等的appid
-    mchId: #微信支付商户号
-    mchKey: #微信支付商户密钥
-    subAppId: #服务商模式下的子商户公众账号ID
-    subMchId: #服务商模式下的子商户号
-    keyPath: # p12证书的位置，可以指定绝对路径，也可以指定类路径（以classpath:开头）
+
+#地址钱包配置
+eth:
+  key:
+  secret:
+  memberCode:
+  #创建钱包地址
+  createUrl:
+  #提幣地址
+  mentionUrl:
+  #地址校验
+  checkAddressUrl:
+  #查询公账账户余额
+  accountBalanceUrl:
+  #公账提币交易
+  sendPublicTransaction:
+
 

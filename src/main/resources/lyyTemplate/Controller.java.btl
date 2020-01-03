@@ -3,10 +3,10 @@ package ${controller.packageName};
 <% for(import in controller.imports!){ %>
 import ${import};
 <% } %>
-import cn.stylefeng.guns.modular.promotion.service.${context.bizEnBigName}Service;
-import cn.stylefeng.guns.modular.promotion.wrapper.${context.bizEnBigName}Wrapper;
-import cn.stylefeng.guns.modular.promotion.entity.${context.bizEnBigName};
-import cn.stylefeng.guns.modular.promotion.constant.${context.bizEnBigName}Map;
+import cn.stylefeng.guns.modular.${context.tableNamePrefix}.service.${context.bizEnBigName}Service;
+import cn.stylefeng.guns.modular.${context.tableNamePrefix}.wrapper.${context.bizEnBigName}Wrapper;
+import cn.stylefeng.guns.modular.${context.tableNamePrefix}.entity.${context.bizEnBigName};
+import cn.stylefeng.guns.modular.${context.tableNamePrefix}.constant.${context.bizEnBigName}Map;
 
 /**
  * ${context.bizChName}控制器

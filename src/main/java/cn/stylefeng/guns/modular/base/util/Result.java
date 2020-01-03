@@ -1,6 +1,8 @@
 package cn.stylefeng.guns.modular.base.util;
 
+import cn.stylefeng.guns.modular.app.common.ApiStatus;
 import cn.stylefeng.guns.modular.app.common.StatusCode;
+import cn.stylefeng.guns.modular.base.state.ProConst;
 
 import java.io.Serializable;
 
@@ -76,6 +78,26 @@ public class Result implements Serializable {
 		result.setSuccess(false);
 		result.setMsg(message);
 		result.setCode(code);
+		return result;
+	}
+
+
+	public static Result fail(ApiStatus apiStatus)
+	{
+		Result  result = new Result();
+		result.setSuccess(false);
+		result.setMsg(apiStatus.msg());
+		result.setCode(apiStatus.code());
+		return result;
+	}
+
+
+	public static Result fail(ApiStatus apiStatus,String msg)
+	{
+		Result  result = new Result();
+		result.setSuccess(false);
+		result.setMsg(msg);
+		result.setCode(apiStatus.code());
 		return result;
 	}
 

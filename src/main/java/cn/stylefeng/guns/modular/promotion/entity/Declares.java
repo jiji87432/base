@@ -18,7 +18,7 @@ import java.io.Serializable;
  */
 
 @Data
-@TableName("declares")
+@TableName("app_declares")
 @Accessors(chain = true)
 public class Declares extends BaseEntity implements Serializable {
 

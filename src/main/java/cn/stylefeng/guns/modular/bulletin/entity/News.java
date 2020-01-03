@@ -13,7 +13,7 @@ import org.springframework.data.elasticsearch.annotations.Document;
 /**
  * 轮播图
  */
-@TableName("news")
+@TableName("com_news")
 @Data
 @Accessors(chain = true)
 public class News extends BaseEntity {

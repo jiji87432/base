@@ -34,7 +34,7 @@
     <select id="selectByCondition" resultType="map">
        select
         <include refid="Base_Column_List"/>
-       from problem tb where del='N'
+       from com_problem tb where del='N'
         <if test="condition!=null and condition!=''">
           and title like concat('%',#{condition},'%')
         </if>

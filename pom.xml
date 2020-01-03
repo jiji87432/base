@@ -11,10 +11,10 @@
     </parent>
 
     <groupId>cn.stylefeng</groupId>
-    <artifactId>base</artifactId>
+    <artifactId>RCC</artifactId>
     <version>1.0.0</version>
 
-    <name>base</name>
+    <name>RCC</name>
     <description>guns 的spring boot版本</description>
 
     <packaging>jar</packaging>
@@ -33,6 +33,8 @@
         <ehcache.core.version>2.6.11</ehcache.core.version>
         <mysql-connector-java.version>8.0.11</mysql-connector-java.version>
         <jwt.version>0.9.0</jwt.version>
+        <alipay.version>4.8.73.ALL</alipay.version>
+        <fastjson.version>1.2.62</fastjson.version>
     </properties>
 
     <dependencies>
@@ -289,7 +291,31 @@
         <!--<groupId>org.springframework.boot</groupId>-->
         <!--<artifactId>spring-boot-starter-data-redis</artifactId>-->
         <!--</dependency>-->
+
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>3.6.0</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.alipay.sdk</groupId>
+            <artifactId>alipay-sdk-java</artifactId>
+            <version>${alipay.version}</version>
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.alibaba</groupId>-->
+            <!--<artifactId>fastjson</artifactId>-->
+            <!--<version>${fastjson.version}</version>-->
+        <!--</dependency>-->
+
+
+
+
     </dependencies>
+
+
 
     <build>
         <finalName>${project.artifactId}</finalName>

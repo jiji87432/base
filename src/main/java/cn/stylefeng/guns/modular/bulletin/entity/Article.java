@@ -7,10 +7,11 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.ToString;
+import lombok.experimental.Accessors;
 
-@TableName("article")
+@TableName("com_article")
 @Data
-@ToString
+@Accessors(chain = true)
 public class Article extends BaseEntity {
     @TableId(value = "article_id", type = IdType.AUTO)
     private Long articleId;

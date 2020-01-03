@@ -24,6 +24,7 @@ public class ContextConfig {
     private String tableSchema;//数据源
     private String bizTableName;//映射表名称
     private List<TableDto> tableFieldList; //表字段信息
+    private String tableNamePrefix;//表前缀
 
     private Boolean controllerSwitch = true;    //是否生成控制器代码开关
     private Boolean indexPageSwitch = true;     //主页
@@ -44,6 +45,13 @@ public class ContextConfig {
 
     private Boolean mapperXmlSwitch=true ; //生成mapper文件
 
+    public String getTableNamePrefix() {
+        return tableNamePrefix;
+    }
+
+    public void setTableNamePrefix(String tableNamePrefix) {
+        this.tableNamePrefix = tableNamePrefix;
+    }
 
     public List<TableDto> getTableFieldList() {
         return tableFieldList;
@@ -162,7 +170,9 @@ public class ContextConfig {
             String[] arr=bizEnName.split("_");
             for(int i=0;i<arr.length;i++)
             {
-                temp+=ToolUtilNew.firstLetterToUpper(arr[i]);
+                if(!arr[i].equals(tableNamePrefix)){
+                    temp+=ToolUtilNew.firstLetterToUpper(arr[i]);
+                }
             }
             this.bizEnName=ToolUtilNew.firstLetterToLower(temp);
             this.bizEnBigName=temp;

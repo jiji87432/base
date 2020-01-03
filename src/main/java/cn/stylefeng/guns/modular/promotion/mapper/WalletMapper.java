@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.ibatis.annotations.Param;
 
+import java.math.BigDecimal;
 import java.util.Map;
 
 /**
@@ -16,5 +17,10 @@ import java.util.Map;
 public interface WalletMapper extends BaseMapper<Wallet> {
 
     Page<Map<String,Object>> selectByCondition(@Param("page") Page page, @Param("condition") String condition);
+
+    int updateWallet(@Param("walletId") Long walletId, @Param("directPrice") BigDecimal directPrice,@Param("version") Long version);
+
+    BigDecimal getSummary(@Param("code") String code);
+
 
 }

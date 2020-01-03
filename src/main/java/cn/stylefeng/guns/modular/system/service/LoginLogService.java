@@ -27,15 +27,4 @@ public class LoginLogService extends ServiceImpl<LoginLogMapper, LoginLog> {
         return this.baseMapper.getLoginLogs(page, beginTime, endTime, logName);
     }
 
-    public void saveLogin(Long memberId, String ip) {
-        LoginLog loginLog=new LoginLog();
-        loginLog.setCreateTime(new Date());
-        loginLog.setIpAddress(ip);
-        loginLog.setLogName("登录小程序");
-        String msg="用户名："+PromotionFactory.me().getMemberNameById(memberId)+" 头像"+PromotionFactory.me().getMemberById(memberId).getHead();
-        loginLog.setMessage(msg);
-        loginLog.setSucceed("成功");
-        loginLog.setUserId(memberId);
-        this.baseMapper.saveAppLogin(loginLog);
-    }
 }

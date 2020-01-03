@@ -74,6 +74,7 @@ public class CodeController extends BaseController {
         }
 
         ContextConfig contextConfig = new ContextConfig();
+        contextConfig.setTableNamePrefix(moduleName);
         contextConfig.setBizChName(bizChName);
         contextConfig.setBizEnName(bizEnName);
         contextConfig.setModuleName(moduleName);

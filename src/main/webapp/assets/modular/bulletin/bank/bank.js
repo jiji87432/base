@@ -101,7 +101,7 @@ Bank.openBankDetail = function () {
         if (checkRows.data.length === 0) {
             Feng.error("请选择要导出的数据");
         } else {
-            table.exportFile(tableResult.bank.id, checkRows.data, 'xls');
+            table.exportFile(tableResult.config.id, checkRows.data, 'xls');
         }
     };
    /**

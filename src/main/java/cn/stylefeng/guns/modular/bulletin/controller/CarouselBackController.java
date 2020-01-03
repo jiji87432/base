@@ -6,10 +6,12 @@ import cn.hutool.http.HtmlUtil;
 import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
 import cn.stylefeng.guns.core.common.page.LayuiPageFactory;
 
+import cn.stylefeng.guns.core.log.LogObjectHolder;
 import cn.stylefeng.guns.modular.app.service.AppCarouselService;
 import cn.stylefeng.guns.modular.bulletin.entity.AppCarousel;
 import cn.stylefeng.guns.modular.bulletin.model.AppCarouselDto;
 import cn.stylefeng.guns.modular.bulletin.wrapper.CarouselWrapper;
+import cn.stylefeng.guns.modular.com.entity.Business;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import cn.stylefeng.roses.core.reqres.response.ResponseData;
 import cn.stylefeng.roses.core.util.ToolUtil;
@@ -60,9 +62,13 @@ public class CarouselBackController extends BaseController {
      * 跳转到编辑公告
      */
     @RequestMapping("/bul_edit")
-    public String bulEdit() {
+    public String bulEdit(Long carouselId, Model model) {
+        AppCarousel condition = bulletinService.getById(carouselId);
+        model.addAllAttributes(BeanUtil.beanToMap(condition));
+        LogObjectHolder.me().set(condition);
         return PREFIX + "bul_edit.html";
     }
+
 
 
     /**
@@ -125,11 +131,11 @@ public class CarouselBackController extends BaseController {
             return ResponseData.error("公告不能为空");
         }
 
-        //对传入数据进行反转义处理
-        String tempContent = bulletin.getContent().replace("& ", "&");
-        tempContent = HtmlUtil.unescape(tempContent);
-        bulletin.setContent(tempContent);
-        bulletin.setImg(bulletin.getImg());
+//        //对传入数据进行反转义处理
+//        String tempContent = bulletin.getContent().replace("& ", "&");
+//        tempContent = HtmlUtil.unescape(tempContent);
+//        bulletin.setContent(tempContent);
+//        bulletin.setImg(bulletin.getImg());
         this.bulletinService.save(bulletin);
         return SUCCESS_TIP;
     }
@@ -156,15 +162,15 @@ public class CarouselBackController extends BaseController {
 //    @BussinessLog(value = "编辑公告", key = "bulletinId", dict = BulletinMap.class)
     @ResponseBody
     public ResponseData edit(AppCarousel bulletin) {
-        AppCarousel oldBulletin = bulletinService.getById(bulletin.getCarouselId());
-        oldBulletin.setTitle(bulletin.getTitle());
-        //对传入数据进行反转义处理
-        String tempContent = bulletin.getContent().replace("& ", "&");
-        tempContent = HtmlUtil.unescape(tempContent);
-        oldBulletin.setContent(tempContent);
-        oldBulletin.setImg(bulletin.getImg());
-        oldBulletin.setLink(bulletin.getLink());
-        bulletinService.updateById(oldBulletin);
+//        AppCarousel oldBulletin = bulletinService.getById(bulletin.getCarouselId());
+//        oldBulletin.setTitle(bulletin.getTitle());
+//        //对传入数据进行反转义处理
+//        String tempContent = bulletin.getContent().replace("& ", "&");
+//        tempContent = HtmlUtil.unescape(tempContent);
+//        oldBulletin.setContent(tempContent);
+//        oldBulletin.setImg(bulletin.getImg());
+//        oldBulletin.setLink(bulletin.getLink());
+        bulletinService.updateById(bulletin);
         return SUCCESS_TIP;
     }
 

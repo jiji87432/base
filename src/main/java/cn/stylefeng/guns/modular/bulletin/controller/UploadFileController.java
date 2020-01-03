@@ -4,7 +4,6 @@ import cn.stylefeng.guns.modular.base.state.PromotionFactory;
 import cn.stylefeng.guns.modular.base.util.Result;
 import cn.stylefeng.guns.modular.bulletin.model.JsonResult;
 import cn.stylefeng.guns.modular.bulletin.model.UploadFileDto;
-import cn.stylefeng.guns.modular.meta_data.constant.factory.IMetaDataFactory;
 import cn.stylefeng.guns.modular.meta_data.constant.factory.MetaDataFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,7 +17,7 @@ import java.util.Calendar;
 import java.util.UUID;
 
 @RestController
-@RequestMapping(value = {"/upload","/app/v1/upload"})
+@RequestMapping(value = {"/upload","/api/upload"})
 public class UploadFileController {
 
     /**
@@ -26,10 +25,10 @@ public class UploadFileController {
      */
     public final String rootPath =MetaDataFactory.me().getValueByCode("UPLOAD_PATH");
 
-    public final String allowSuffix = ".bmp.jpg.jpeg.png.gif.pdf.doc.zip.rar.gz.mp4.wav.avi";
+    public final String allowSuffix = ".bmp.jpg.jpeg.png.gif.pdf.doc.zip.rar.gz.mp4.wav.avi.mp3";
 
     /**
-     * 上传文件
+     * 上传文件 APP 端
      *
      * @param file
      * @return
@@ -92,7 +91,7 @@ public class UploadFileController {
     }
 
     /**
-     * 上传文件
+     * 上传文件 PC 端
      *
      * @param file
      * @return

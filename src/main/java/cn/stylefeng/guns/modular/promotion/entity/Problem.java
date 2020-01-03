@@ -18,7 +18,7 @@ import java.io.Serializable;
  */
 
 @Data
-@TableName("problem")
+@TableName("com_problem")
 @Accessors(chain = true)
 public class Problem extends BaseEntity implements Serializable {
 

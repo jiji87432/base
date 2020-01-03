@@ -22,17 +22,13 @@ import java.util.Map;
 public class AppCarouselService extends ServiceImpl<AppCarouselMapper, AppCarousel> {
 
 
-    public Result getList() {
+    public Result getList(String type) {
 
         AppCarousel carousel=new AppCarousel();
-        carousel.setDel("N");
+        carousel.setDel("N").setType(type);
         List<AppCarousel> list = this.list(new QueryWrapper<>(carousel));
         List<AppCarouselDto> dtoList=new ArrayList<>();
-        Map<String, Object> map = new HashMap<>();
-        if (list.size() == 0) {
-            map.put("haveData", "N");
-        } else {
-            map.put("haveData", "Y");
+        if (list.size() >0) {
             for(AppCarousel entity:list)
             {
                 AppCarouselDto dto=new AppCarouselDto();
@@ -49,8 +45,7 @@ public class AppCarouselService extends ServiceImpl<AppCarouselMapper, AppCarous
                 dtoList.add(dto);
             }
         }
-        map.put("data", dtoList);
-        return Result.success(map);
+        return Result.success(dtoList);
     }
 
     /**

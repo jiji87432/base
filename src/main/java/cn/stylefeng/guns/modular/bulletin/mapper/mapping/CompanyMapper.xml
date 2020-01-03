@@ -40,7 +40,7 @@
   <select id="selectByCondition" resultType="map">
     select
     <include refid="Base_Column_List"/>
-    from company where del='N'
+    from com_company where del='N'
     <if test="condition!=null and condition!=''">
       and name like concat('%',#{condition},'%')
     </if>

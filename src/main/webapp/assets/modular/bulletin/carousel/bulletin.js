@@ -21,8 +21,10 @@ layui.use(['layer', 'table', 'ax', 'laydate'], function () {
             // {type: 'checkbox'},
             {field: 'carouselId', hide: true, sort: true, title: 'id'},
             {field: 'carouselId',  sort: true, title: '轮播图id'},
-            {field: 'link', sort: true, title: '链接文章'},
-            {field: 'title', sort: true, title: '标题'},
+            // {field: 'link', sort: true, title: '链接文章'},
+            // {field: 'title', sort: true, title: '标题'},
+            {field: 'type',hide: true,  sort: true, title: '类型'},
+            {field: 'typeValue', sort: true, title: '类型'},
             {field: 'img', sort: true, title: '图片',templet: "#imgs" },
             {field: 'createTime', sort: true, title: '创建时间'},
             {align: 'center', toolbar: '#tableBar', title: '操作', minWidth: 100}
@@ -104,7 +106,7 @@ layui.use(['layer', 'table', 'ax', 'laydate'], function () {
             ajax.set("carouselId", data.carouselId);
             ajax.start();
         };
-        Feng.confirm("是否删除轮播：" + data.title + "?", operation);
+        Feng.confirm("是否删除轮播：" + data.carouselId + "?", operation);
     }
 
 
@@ -187,6 +189,7 @@ layui.use(['layer', 'table', 'ax', 'laydate'], function () {
         var layEvent = obj.event;
 
         if (layEvent === 'detail') {
+            console.log("dfs")
             bulletin.bulletinDetail(data);
         } else if (layEvent === 'close') {
             bulletin.onCloseBul(data);

@@ -23,7 +23,7 @@ layui.use(['table', 'admin', 'ax', 'ztree'], function () {
             // {type: 'checkbox'},
             {field: 'configId', hide: true, sort: true, title: 'id'},
             {field: 'name', sort: true, title: '名称'},
-            {field: 'code', sort: true, title: '属性编码'},
+            // {field: 'code', sort: true, title: '属性编码'},
             {field: 'value', sort: true, title: '属性值'},
             {field: 'remark', sort: true, title: '备注'},
             {field: 'createTime', sort: true, title: '创建时间'},

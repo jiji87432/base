@@ -39,7 +39,7 @@ layui.use(['layer', 'form', 'admin', 'ax','upload'], function () {
     var upload=layui.upload;
 
     // 让当前iframe弹层高度适应
-    // admin.iframeAuto();
+    admin.iframeAuto();
 
 
     layui.use('layedit', function () {
@@ -121,7 +121,6 @@ layui.use(['layer', 'form', 'admin', 'ax','upload'], function () {
 
         var a = data.field;
         a.img=$("#demo1").attr("url_link");
-        // data.field.content=htmlEncode(a.content);
         ajax.set(a);
         ajax.start();
     });

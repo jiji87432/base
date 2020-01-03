@@ -13,7 +13,7 @@ import java.util.Date;
 /**
  * 公司表
  */
-@TableName("company")
+@TableName("com_company")
 @Data
 @Accessors(chain =true)
 public class Company extends BaseEntity {

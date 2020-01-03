@@ -14,7 +14,7 @@ import java.util.Date;
 /**
  * 商户表
  */
-@TableName("merchant")
+@TableName("app_merchant")
 @Data
 @Accessors(chain = true)
 public class Merchant extends BaseEntity {

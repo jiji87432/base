@@ -49,7 +49,7 @@
     ,(select IFNULL(sum(g3.money),0) from merchant_grab g3 where g3.merchant_id=m.merchant_id) orderTotalPrice
     ,(select IFNULL(sum(g3.money),0) from merchant_grab g3 where g3.merchant_id=m.merchant_id and g3.`status`='SUCCESS') orderOkTotalPrice
 
-    from merchant m where m.del_flag='N'
+    from app_merchant m where m.del_flag='N'
     <if test="condition!=null and condition!=''">
       and m.name like concat('%',#{condition},'%')
     </if>

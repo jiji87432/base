@@ -101,8 +101,9 @@ public class WalletController extends BaseController {
     @BussinessLog(value = "编辑参数", key = "walletId", dict = WalletMap.class)
     @ResponseBody
     public ResponseData edit(Wallet wallet) {
-        walletService.updateById(wallet);
-        return SUCCESS_TIP;
+
+
+        return walletService.edit(wallet);
     }
 
     /**

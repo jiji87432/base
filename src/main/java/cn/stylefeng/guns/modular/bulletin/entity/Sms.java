@@ -11,7 +11,7 @@ import lombok.experimental.Accessors;
 /**
  * 短信表
  */
-@TableName("sms")
+@TableName("com_sms")
 @Data
 @Accessors(chain =true)
 public class Sms extends BaseEntity {

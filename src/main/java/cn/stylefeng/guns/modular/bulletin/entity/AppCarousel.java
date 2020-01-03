@@ -7,13 +7,14 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.ToString;
+import lombok.experimental.Accessors;
 
 /**
  * 轮播图
  */
 @TableName("app_carousel")
 @Data
-@ToString
+@Accessors(chain = true)
 public class AppCarousel extends BaseEntity {
 
     @TableId(value = "carousel_id",type = IdType.AUTO)
@@ -29,8 +30,12 @@ public class AppCarousel extends BaseEntity {
     private String link;
     @TableField("sort")
     private Long sort;
+    @TableField("type")
+    private String type;
+
     @TableField("status")
     private String status;
+
     @TableField("del")
     private String del;
     @TableField("remark")

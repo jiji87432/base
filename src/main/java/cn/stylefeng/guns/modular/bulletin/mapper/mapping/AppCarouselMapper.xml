@@ -7,6 +7,7 @@
     <result column="link" jdbcType="VARCHAR" property="link" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="sort" jdbcType="BIGINT" property="sort" />
+    <result column="type"  property="type" />
     <result column="status" jdbcType="VARCHAR" property="status" />
     <result column="del" jdbcType="VARCHAR" property="del" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
@@ -17,12 +18,13 @@
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
   </resultMap>
   <sql id="Base_Column_List">
-    carousel_id carouselId, img, link,title, sort, status, del, remark,content, CREATE_TIME createTime, CREATE_USER createUser, UPDATE_TIME updateTime,
+    carousel_id carouselId, img, link,title, sort,type, status, del, remark,content, CREATE_TIME createTime, CREATE_USER createUser, UPDATE_TIME updateTime,
     UPDATE_USER updateUser
   </sql>
   <select id="selectByCondition" resultType="map">
     select
     <include refid="Base_Column_List"/>
     from app_carousel where del='N'
+    order by CREATE_TIME desc
   </select>
 </mapper>

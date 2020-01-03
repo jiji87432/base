@@ -20,13 +20,14 @@ var Wallet = {
  */
 Wallet.initColumn = function () {
     return [[
-        // {type: 'checkbox'},
+        {type: 'checkbox'},
          {field: 'walletId', hide: true, sort: true, title: 'id'},
-         {field: 'memberId', sort: true, title: ''},
+         {field: 'memberId', hide: true,sort: true, title: '用户'},
+         {field: 'memberIdValue', sort: true, title: '用户'},
+         {field: 'type', hide: true,sort: true, title: '账户类型'},
+         {field: 'typeValue', sort: true, title: '账户类型'},
          {field: 'totalPrice', sort: true, title: '钱包总额'},
-         {field: 'returnPrice', sort: true, title: '平台返还总额'},
-         {field: 'ticketPrice', sort: true, title: '消费券总额'},
-         {field: 'createTime', sort: true, title: '创建时间'},
+         // {field: 'createTime', sort: true, title: '创建时间'},
         {align: 'center', toolbar: '#tableBar', title: '操作', minWidth: 200}
     ]];
 };
@@ -104,7 +105,7 @@ Wallet.openWalletDetail = function () {
         if (checkRows.data.length === 0) {
             Feng.error("请选择要导出的数据");
         } else {
-            table.exportFile(tableResult.wallet.id, checkRows.data, 'xls');
+            table.exportFile(tableResult.config.id, checkRows.data, 'xls');
         }
     };
    /**

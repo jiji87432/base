@@ -23,7 +23,7 @@
     <select id="selectByCondition" resultType="map">
         select
         <include refid="Base_Column_List"/>
-        from article where del='N'
+        from com_article where del='N'
         <if test="condition!=null and condition!=''">
             and name like concat('%',#{condition},'%')
         </if>

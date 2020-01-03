@@ -1,11 +1,10 @@
 package cn.stylefeng.guns.core.interceptor;
 
-import cn.stylefeng.guns.modular.app.service.AppMemberService;
+import cn.stylefeng.guns.modular.app.entity.Member;
+import cn.stylefeng.guns.modular.app.service.MemberService;
 import cn.stylefeng.guns.modular.base.state.Constant;
 import cn.stylefeng.guns.modular.base.state.PromotionFactory;
 import cn.stylefeng.guns.modular.base.util.RedisUtil;
-import cn.stylefeng.guns.modular.bulletin.entity.AppMember;
-//import cn.stylefeng.guns.modular.bulletin.service.MemberService;
 import com.alibaba.fastjson.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +28,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
     RedisUtil redisUtil;
 
     @Autowired
-    AppMemberService memberService;
+    MemberService memberService;
 
     /**
      * 预处理回调方法，实现处理器的预处理（如登录检查）。
@@ -52,9 +51,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
                 response.getWriter().print(map);
                 return false;
             }
-            AppMember c = (AppMember) redisUtil.get(obj.toString());
+            Member c = (Member) redisUtil.get(obj.toString());
 
-            if (redisUtil.get(obj.toString()) == null || !(redisUtil.get(obj.toString()) instanceof AppMember)) {
+            if (redisUtil.get(obj.toString()) == null || !(redisUtil.get(obj.toString()) instanceof Member)) {
                 response.setContentType("application/json; charset=utf-8");
                 response.setStatus(403);
                 Map<String, Object> map = new HashMap<>();
@@ -66,8 +65,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 
             String token = obj.toString();
             logger.error(JSONObject.toJSONString(redisUtil.get(token)));
-            AppMember memberQ = (AppMember) redisUtil.get(token);
-            AppMember member = memberService.getById(memberQ.getMemberId());
+            Member memberQ = (Member) redisUtil.get(token);
+            Member member = memberService.getById(memberQ.getMemberId());
             if (member == null) {
                 response.setContentType("application/json; charset=utf-8");
                 response.setStatus(403);
@@ -82,11 +81,20 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
                 response.setStatus(403);
                 Map<String, Object> map = new HashMap<>();
                 map.put("code", 403);
-                map.put("message", "登录时间已过");
+                map.put("message", "用户已封禁");
                 response.getWriter().print(map);
                 return false;
             }
-            redisUtil.set(Constant.TOKEN + token, member, Long.parseLong(PromotionFactory.me().getSysConfigValueByCode(Constant.TOKEN_EXPIRE)));
+            if (member.getDel().equals("Y")) {
+                response.setContentType("application/json; charset=utf-8");
+                response.setStatus(403);
+                Map<String, Object> map = new HashMap<>();
+                map.put("code", 403);
+                map.put("message", "用户不存在");
+                response.getWriter().print(map);
+                return false;
+            }
+            redisUtil.set(token, member, Long.parseLong(PromotionFactory.me().getSysConfigValueByCode(Constant.TOKEN_EXPIRE)));
             return true;
         } catch (Exception e) {
             e.printStackTrace();

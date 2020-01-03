@@ -1,5 +1,8 @@
 package cn.stylefeng.guns.modular.promotion.wrapper;
 
+import cn.stylefeng.guns.modular.app.entity.Member;
+import cn.stylefeng.guns.modular.base.state.ProConst;
+import cn.stylefeng.guns.modular.base.state.PromotionFactory;
 import cn.stylefeng.roses.core.base.warpper.BaseControllerWrapper;
 import cn.stylefeng.roses.kernel.model.page.PageResult;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -33,6 +36,23 @@ public class WalletWrapper extends BaseControllerWrapper{
 
         @Override
         protected void wrapTheMap(Map<String, Object> map) {
+            Long memberId=(Long)map.get("memberId");
+            if(memberId!=null)
+            {
+                Member member=PromotionFactory.me().getMember(memberId);
+                map.put("memberIdValue",member==null?"无":member.getPhone());
+            }
 
+            //typeValue
+
+            String type = (String) map.get("type");
+            if (type != null) {
+                for (ProConst.WalletType e : ProConst.WalletType.values()) {
+                    if(e.getCode().equals(type))
+                    {
+                        map.put("typeValue",e.getValue());
+                    }
+                }
+            }
         }
 }

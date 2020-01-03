@@ -17,24 +17,18 @@ public class InterceptorConfiguration implements WebMvcConfigurer {
         // 注册拦截器
         InterceptorRegistration ir = registry.addInterceptor(loginInterceptor());
         // 配置拦截的路径
-        ir.addPathPatterns("/app/v1/**");
+        ir.addPathPatterns("/api/**");
         // 配置不拦截的路径
-        ir.excludePathPatterns("/app/v1/login");//登录
-        ir.excludePathPatterns("/app/v1/getToken");//登录
-        ir.excludePathPatterns("/app/v1/register");//注册
-        ir.excludePathPatterns("/app/v1/forgetPwd");//忘记密码
-        ir.excludePathPatterns("/app/v1/getInvite");//短信验证码
-        ir.excludePathPatterns("/app/v1/version");//版本
-        ir.excludePathPatterns("/app/v1/upload/img");//图片上传
-        ir.excludePathPatterns("/app/v1/carousel");//轮播图
-        ir.excludePathPatterns("/app/v1/personal/contact");//联系客服
-        ir.excludePathPatterns("/app/v1/news");//联系客服
-        ir.excludePathPatterns("/app/v1/declare");//用户协议
-        ir.excludePathPatterns("/app/v1/shop/category");//服务类型
+        ir.excludePathPatterns("/api/login");//登录
+        ir.excludePathPatterns("/api/register");//注册
+        ir.excludePathPatterns("/api/forgetPwd");//忘记密码
+        ir.excludePathPatterns("/api/getMsg");//短信验证码
+        ir.excludePathPatterns("/api/version");//版本
+        ir.excludePathPatterns("/api/upload/img");//图片上传
+        ir.excludePathPatterns("/api/personal/**");//处理外部回调api
+        ir.excludePathPatterns("/api/common/**");//公共api
+        ir.excludePathPatterns("/api/visitor/**");//游客访问api
 
-        //TODO:开发用
-        ir.excludePathPatterns("/app/v1/getToken");//获取token
-        ir.excludePathPatterns("/app/v1/personal/**");//url回调
     }
 
     @Bean

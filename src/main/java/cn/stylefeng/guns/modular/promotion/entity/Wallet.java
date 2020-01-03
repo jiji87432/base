@@ -6,9 +6,11 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 
 /**
   * <p> 用户钱包 实体类 </p>
@@ -18,8 +20,9 @@ import java.io.Serializable;
  */
 
 @Data
-@TableName("wallet")
+@TableName("fin_wallet")
 @Accessors(chain = true)
+@ToString
 public class Wallet extends BaseEntity implements Serializable {
 
      private static final long serialVersionUID = 1L;
@@ -60,6 +63,9 @@ public class Wallet extends BaseEntity implements Serializable {
      @TableField("status")
      private String status;
 
+     @TableField("type")
+     private String type;
+
      /**
       * 删除标志
       */
@@ -71,6 +77,11 @@ public class Wallet extends BaseEntity implements Serializable {
       */
      @TableField("remark")
      private String remark;
+     /**
+      * 版本
+      */
+     @TableField("version")
+     private Long version;
 
 
 
